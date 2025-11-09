@@ -1,8 +1,231 @@
 ---
-import Header from '../components/Header.astro';
 import Layout from '../layouts/Layout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import ProjectModal from '../components/ProjectModal.astro';
 ---
 
-<Layout>
-  <Header />
+<Layout 
+  title="GBRS Services | Agricultural & Industrial Construction Hartlepool | Foundations to Finish"
+  description="GBRS Services Ltd – family-run construction experts in Hartlepool & North East UK. Specialists in agricultural & industrial steel buildings, groundworks, and complete build solutions. 40+ years experience."
+  structuredData={true}
+  activePage="home"
+>
+  <!-- HERO -->
+  <section class="hero" id="main">
+    <div class="hero-overlay">
+      <div class="hero-badge">Est. 2022 • 40+ Years Combined Experience</div>
+      <h1>Agricultural & Industrial Building Specialists</h1>
+      <p class="hero-subtitle">From Foundations to Finish<br> Serving the North East</p>
+      
+      <!-- Prominent CTA buttons -->
+      <div class="hero-cta-group">
+        <a href="tel:07555804062" class="btn-primary btn-call">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="20" height="20">
+            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+          </svg>
+          Call: 07555 804062
+        </a>
+        <a href="#contact" class="btn-secondary">Get a Free Quote</a>
+      </div>
+
+      <!-- Trust indicators -->
+      <div class="hero-stats">
+        <div class="stat-item">
+          <strong>120+</strong>
+          <span>Projects Completed</span>
+        </div>
+        <div class="stat-item">
+          <strong>40+</strong>
+          <span>Years Experience</span>
+        </div>
+        <div class="stat-item">
+          <strong>5★</strong>
+          <span>Rated Service</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT PREVIEW -->
+  <section id="about" class="about section">
+    <div class="container">
+      <div class="about-content">
+        <div class="section-header">
+          <span class="section-tag">Since 2022</span>
+          <h2>Who We Are</h2>
+        </div>
+        <p class="lead-text">
+          <strong>GBRS Services Ltd</strong> is a trusted, family-run construction business proudly serving 
+          <strong>Hartlepool, County Durham, and the wider North East</strong>. 
+        </p>
+        <p>
+          With over <strong>40 years of combined hands-on experience</strong>, we handle every stage of your 
+          construction project — from initial <em>groundworks to final finishes</em>.
+        </p>
+        <p>
+          We specialise in <strong>agricultural and industrial steel buildings</strong>, offering comprehensive 
+          services including foundations, steel erection, sheeting, cladding, and civil engineering works.
+        </p>
+        
+        <div class="about-features">
+          <div class="feature-item">
+            <span class="feature-icon">✓</span>
+            <div>
+              <h3>40+ Years Experience</h3>
+              <p>Proven expertise in agricultural & industrial construction</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">✓</span>
+            <div>
+              <h3>Family-Run Business</h3>
+              <p>Personal service and attention to every project</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">✓</span>
+            <div>
+              <h3>Complete In-House</h3>
+              <p>All work done by our skilled team, no subcontractors</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">✓</span>
+            <div>
+              <h3>Local to North East</h3>
+              <p>Based in Hartlepool, serving County Durham & beyond</p>
+            </div>
+          </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+          <a href="/about" class="btn-primary">Learn More About Our Team</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES PREVIEW -->
+  <section id="services" class="services section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">What We Do</span>
+        <h2>Our Services</h2>
+      </div>
+      <p class="services-intro">
+        GBRS provides end-to-end construction services throughout Hartlepool and the North East, 
+        specialising in agricultural and industrial projects. Everything is handled in-house by our 
+        experienced team, ensuring consistent quality from start to finish.
+      </p>
+
+      <div class="service-grid">
+        <a href="/services#agricultural" class="service-card service-card-link">
+          <img data-photo="SERVICES.AGRICULTURAL" alt="Modern agricultural steel building construction in Hartlepool" width="400" height="300" loading="lazy">
+          <div class="service-content">
+            <h3>Agricultural Buildings</h3>
+            <p>Complete steel-framed buildings for farms and agricultural facilities.</p>
+          </div>
+        </a>
+        
+        <a href="/services#industrial" class="service-card service-card-link">
+          <img data-photo="SERVICES.INDUSTRIAL" alt="Industrial buildings and warehouses" width="400" height="300" loading="lazy">
+          <div class="service-content">
+            <h3>Industrial Buildings</h3>
+            <p>Warehouses, workshops, and commercial steel structures.</p>
+          </div>
+        </a>
+        
+        <a href="/services#groundworks" class="service-card service-card-link">
+          <img data-photo="SERVICES.GROUNDWORKS" alt="Groundworks and civil engineering" width="400" height="300" loading="lazy">
+          <div class="service-content">
+            <h3>Groundworks & Civils</h3>
+            <p>Foundations, drainage, and civil engineering works.</p>
+          </div>
+        </a>
+        
+        <a href="/services#steel" class="service-card service-card-link">
+          <img data-photo="SERVICES.STEEL_ERECTION" alt="Steel erection and cladding" width="400" height="300" loading="lazy">
+          <div class="service-content">
+            <h3>Steel Erection & Cladding</h3>
+            <p>Expert steel frame erection and cladding services.</p>
+          </div>
+        </a>
+      </div>
+      
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="/services" class="btn-primary">View All Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS PREVIEW -->
+  <section id="projects" class="projects section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Our Work</span>
+        <h2>Featured Projects</h2>
+      </div>
+      <p class="projects-intro">
+        See our latest completed projects across Hartlepool and the North East. 
+      </p>
+      
+      <div class="projects-grid-enhanced">
+        <article class="project-card">
+          <div class="project-images">
+            <img data-photo="PROJECTS.RECLAD_STOCKTON.THUMBNAIL" alt="Recladding project in Stockton" width="600" height="400" loading="lazy" class="project-main-img">
+            <div class="project-badge">Recladding</div>
+          </div>
+          <div class="project-info">
+            <h3>Industrial Recladding - Stockton</h3>
+            <p class="project-description">
+              Complete recladding job in Stockton with Micro-rib sheets in Anthracite grey.
+            </p>
+            <button class="view-gallery-btn" data-project="recladStockton">
+              View Gallery (3 photos) →
+            </button>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-images">
+            <img data-photo="PROJECTS.DRYER_SHED.THUMBNAIL" alt="Bespoke agricultural dryer shed" width="600" height="400" loading="lazy" class="project-main-img">
+            <div class="project-badge">Agricultural</div>
+          </div>
+          <div class="project-info">
+            <h3>Bespoke Dryer Shed</h3>
+            <p class="project-description">
+              Custom-designed dryer shed for agricultural use.
+            </p>
+            <button class="view-gallery-btn" data-project="dryer">
+              View Gallery (4 photos) →
+            </button>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-images">
+            <img data-photo="PROJECTS.LEANTO.THUMBNAIL" alt="80x20ft lean-to steel building" width="600" height="400" loading="lazy" class="project-main-img">
+            <div class="project-badge">New Build</div>
+          </div>
+          <div class="project-info">
+            <h3>80x20ft Lean-to Structure</h3>
+            <p class="project-description">
+              Full steel erection and cladding for storage space.
+            </p>
+            <button class="view-gallery-btn" data-project="leanto">
+              View Gallery (3 photos) →
+            </button>
+          </div>
+        </article>
+      </div>
+
+      <div class="projects-cta">
+        <p>View our complete portfolio of 120+ completed projects</p>
+        <a href="/projects" class="btn-primary">Browse All Projects</a>
+      </div>
+    </div>
+  </section>
+
+  <ProjectModal />
+  <ContactForm />
 </Layout>

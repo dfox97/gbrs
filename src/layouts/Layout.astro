@@ -1,23 +1,98 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  structuredData?: boolean;
+  activePage?: string;
+}
+
+const {
+  title = "GBRS Services | Agricultural & Industrial Construction Hartlepool | Foundations to Finish",
+  description = "GBRS Services Ltd – family-run construction experts in Hartlepool & North East UK. Specialists in agricultural & industrial steel buildings, groundworks, and complete build solutions. 40+ years experience.",
+  structuredData = false,
+  activePage = ""
+} = Astro.props;
+
+const structuredDataJson = {
+  "@context": "https://schema.org",
+  "@type": "GeneralContractor",
+  "name": "GBRS Services Ltd",
+  "url": "https://www.gbrsltd.co.uk",
+  "logo": "https://www.gbrsltd.co.uk/gbrs_ltd_logo.jpg",
+  "description": "Family-run construction business specialising in agricultural and industrial steel buildings, groundworks, and civil engineering across Hartlepool and the North East UK.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": " North farm, The Green, Elwick",
+    "addressLocality": "Hartlepool",
+    "postalCode": "TS27 3ED",
+    "addressCountry": "GB"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "54.7123",
+    "longitude": "-1.3245"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "07:00",
+      "closes": "21:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Saturday", "Sunday"],
+      "opens": "10:00",
+      "closes": "16:00"
+    }
+  ],
+  "areaServed": [
+    {
+      "@type": "City",
+      "name": "Hartlepool"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "County Durham"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "North East England"
+    }
+  ],
+  "foundingDate": "2022",
+  "slogan": "From Foundations to Finish",
+  "email": "gbrsltd@gmail.com",
+  "telephone": "07555804062",
+  "priceRange": "££",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "reviewCount": "12"
+  }
+};
+---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="GBRS Services Ltd – family-run construction experts in Hartlepool & North East UK. Specialists in agricultural & industrial steel buildings, groundworks, and complete build solutions. 40+ years experience." />
+  <meta name="description" content={description} />
   <meta name="keywords" content="GBRS Services, construction Hartlepool, agricultural buildings North East, industrial buildings County Durham, groundworks Hartlepool, steel erection, cladding, UK construction, civils Hartlepool, reclad services" />
   <meta name="theme-color" content="#F36F21" />
   
   <!-- Open Graph / Social Media -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="GBRS Services | Foundations to Finish - Hartlepool Construction" />
-  <meta property="og:description" content="Family-run construction specialists in Hartlepool. Agricultural & industrial buildings, groundworks, steel erection. 40+ years experience." />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
   <meta property="og:url" content="https://www.gbrsltd.co.uk" />
-  <meta property="og:image" content="https://www.gbrsltd.co.uk/gbrs_ltd_logo.jpg" />
+  <meta property="og:image" content="https://www.gbrsltd.co.uk/photos/gbrs_ltd_logo.jpg" />
   
-  <title>GBRS Services | Agricultural & Industrial Construction Hartlepool | Foundations to Finish</title>
+  <title>{title}</title>
 
   <!-- Favicon -->
-  <link rel="icon" type="image/jpeg" href="photos/gbrs_ltd_logo.jpg">
+  <link rel="icon" type="image/jpeg" href="/photos/gbrs_ltd_logo.jpg">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
   <!-- Fonts -->
@@ -25,81 +100,122 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="css/main.css" />
-
-  <!-- Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "GeneralContractor",
-    "name": "GBRS Services Ltd",
-    "url": "https://www.gbrsltd.co.uk",
-    "logo": "https://www.gbrsltd.co.uk/gbrs_ltd_logo.jpg",
-    "description": "Family-run construction business specialising in agricultural and industrial steel buildings, groundworks, and civil engineering across Hartlepool and the North East UK.",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": " North farm, The Green, Elwick",
-      "addressLocality": "Hartlepool",
-      "postalCode": "TS27 3ED",
-      "addressCountry": "GB"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "54.7123",
-      "longitude": "-1.3245"
-    },
-    "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        "opens": "07:00",
-        "closes": "21:00"
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Saturday", "Sunday"],
-        "opens": "10:00",
-        "closes": "16:00"
-      }
-    ],
-    "areaServed": [
-      {
-        "@type": "City",
-        "name": "Hartlepool"
-      },
-      {
-        "@type": "AdministrativeArea",
-        "name": "County Durham"
-      },
-      {
-        "@type": "AdministrativeArea",
-        "name": "North East England"
-      }
-    ],
-    "foundingDate": "2022",
-    "slogan": "From Foundations to Finish",
-    "email": "gbrsltd@gmail.com",
-    "telephone": "07555804062",
-    "priceRange": "££",
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5",
-      "reviewCount": "12"
-    }
-  }
-  </script>
+  {structuredData && (
+    <script type="application/ld+json" set:html={JSON.stringify(structuredDataJson)} />
+  )}
 </head>
-	<body>
-		<slot />
-	</body>
+
+<body>
+  <!-- Skip to main content for accessibility -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <!-- FLOATING CONTACT BUTTONS (Mobile-optimized) -->
+  <div class="floating-contact">
+    <a href="tel:07555804062" class="fab-button fab-phone" aria-label="Call GBRS Services">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24" height="24">
+        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+      </svg>
+    </a>
+    <a href="sms:07555804062" class="fab-button fab-sms" aria-label="Text GBRS Services">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="24" height="24">
+        <path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 11H7V9h2v2zm4 0h-2V9h2v2zm4 0h-2V9h2v2z"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="container nav-container">
+      <a href="/" class="logo" aria-label="GBRS Services Home">
+        <img src="/photos/gbrs_ltd_logo.jpg" alt="GBRS Services Ltd Logo" class="logo-image">
+        <span class="logo-text">GBRS Services Ltd</span>
+      </a>
+
+      <!-- Quick Contact in Header (Desktop) -->
+      <div class="header-contact">
+        <a href="tel:07555804062" class="header-phone">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+          </svg>
+          <span>Call Now</span>
+        </a>
+      </div>
+
+      <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+        <span class="hamburger"></span>
+      </button>
+
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="/" class={activePage === "home" ? "active" : ""}>Home</a>
+        <div class="nav-item">
+          <a href="/about" class={`nav-link-with-dropdown ${activePage === "about" ? "active" : ""}`}>About</a>
+          <div class="nav-dropdown">
+            <a href="/about/who-are-we">Who Are We</a>
+            <a href="/about/certifications">Certifications</a>
+          </div>
+        </div>
+        <a href="/services" class={activePage === "services" ? "active" : ""}>Services</a>
+        <a href="/projects" class={activePage === "projects" ? "active" : ""}>Projects</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <slot />
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>GBRS Services Ltd</h3>
+          <p class="footer-note">Family-run construction specialists serving Hartlepool, County Durham, and the North East.</p>
+          <p><em>From Foundations to Finish</em></p>
+          <p class="footer-note">Est. 2022 • 40+ Years Combined Experience</p>
+        </div>
+
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul class="footer-list">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About Us</a></li>
+            <li><a href="/services">Services</a></li>
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="/#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <p><strong>Email:</strong> <a href="mailto:gbrsltd@gmail.com">gbrsltd@gmail.com</a></p>
+          <p><strong>Phone:</strong> <a href="tel:07555804062">07555 804062</a></p>
+          <p><strong>Address:</strong> North farm, The Green, Elwick, Hartlepool TS27 3ED</p>
+        </div>
+
+        <div class="footer-section">
+          <h3>Opening Hours</h3>
+          <div class="opening-hours-item">
+            <strong>Monday - Friday</strong>
+            <span>07:00 - 21:00</span>
+          </div>
+          <div class="opening-hours-item">
+            <strong>Saturday - Sunday</strong>
+            <span>10:00 - 16:00</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 GBRS Services Ltd. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/src/scripts/photos.js" is:inline></script>
+  <script src="/src/scripts/main.js" is:inline></script>
+</body>
 </html>
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+<style is:global>
+  @import '../styles/main.css';
 </style>

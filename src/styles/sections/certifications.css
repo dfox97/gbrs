@@ -1,0 +1,12 @@
+.certifications-list {
+  display: grid;
+  gap: 25px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .certifications-list {
+    gap: 30px;
+  }
+}

@@ -1,0 +1,97 @@
+.footer {
+  background: #1a1a1a;
+  color: #e0e0e0;
+  padding: 50px 20px 25px;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    text-align: left;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer-content {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+}
+
+.footer-section h3 {
+  color: #fff;
+  font-size: 1.1rem;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.footer-section p,
+.footer-section li {
+  margin-bottom: 8px;
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+.footer-list {
+  list-style: none;
+}
+
+.footer-list li::before {
+  content: '→ ';
+  color: var(--primary);
+}
+
+.footer-section a {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-section a:hover,
+.footer-section a:focus {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+.footer-note {
+  font-size: 0.85rem;
+  color: #b0b0b0;
+  margin-top: 5px;
+}
+
+.opening-hours-item {
+  margin-bottom: 10px;
+}
+
+.opening-hours-item strong {
+  display: block;
+  color: #fff;
+  font-size: 0.9rem;
+  margin-bottom: 3px;
+}
+
+.opening-hours-item span {
+  display: block;
+  color: #e0e0e0;
+  font-size: 0.9rem;
+}
+
+.footer-bottom {
+  border-top: 1px solid #333;
+  padding-top: 20px;
+  text-align: center;
+  color: #999;
+  font-size: 0.9rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}

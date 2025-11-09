@@ -1,0 +1,49 @@
+.about {
+  background: var(--light-grey);
+}
+
+.about-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.about h2 {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  color: #111;
+  text-align: center;
+}
+
+.about p {
+  font-size: 1rem;
+  margin-bottom: 18px;
+  color: #555;
+  line-height: 1.7;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .about h2 {
+    font-size: 2.5rem;
+  }
+
+  .about p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    line-height: 1.8;
+  }
+}
+
+.about-features {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+@media (min-width: 768px) {
+  .about-features {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+}

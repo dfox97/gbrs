@@ -1,0 +1,143 @@
+.project-modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  overflow: auto;
+}
+
+.project-modal.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 1200px;
+  width: 90%;
+  margin: 20px;
+  animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 3rem;
+  cursor: pointer;
+  padding: 0;
+  width: 48px;
+  height: 48px;
+  line-height: 1;
+  transition: transform 0.2s ease;
+  z-index: 10;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+  transform: scale(1.2);
+}
+
+.modal-title {
+  color: white;
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.modal-gallery {
+  background: transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+.modal-gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 70vh;
+  object-fit: contain;
+}
+
+.modal-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.modal-prev,
+.modal-next {
+  background: var(--primary);
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 60px;
+  min-height: 48px;
+}
+
+.modal-prev:hover,
+.modal-next:hover,
+.modal-prev:focus,
+.modal-next:focus {
+  background: var(--primary-dark);
+  transform: scale(1.05);
+}
+
+.modal-prev:disabled,
+.modal-next:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.modal-counter {
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 640px) {
+  .modal-content {
+    width: 95%;
+    margin: 10px;
+  }
+
+  .modal-title {
+    font-size: 1.3rem;
+  }
+
+  .modal-nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .modal-prev,
+  .modal-next {
+    width: 100%;
+  }
+}

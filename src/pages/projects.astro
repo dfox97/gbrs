@@ -1,0 +1,133 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProjectModal from '../components/ProjectModal.astro';
+---
+
+<Layout 
+  title="Our Projects | GBRS Services | Construction Portfolio"
+  description="View 120+ completed construction projects by GBRS Services. Agricultural buildings, industrial structures, and steel erection projects across Hartlepool and North East UK."
+  activePage="projects"
+>
+  <section class="page-hero" id="main">
+    <div class="hero-overlay">
+      <h1>Our Projects</h1>
+      <p class="hero-subtitle">120+ Completed Projects Across the North East</p>
+    </div>
+  </section>
+
+  <section class="projects section">
+    <div class="container">
+      <div class="projects-filter">
+        <label for="category-filter">Filter by:</label>
+        <select id="category-filter" class="filter-select">
+          <option value="all">All Projects</option>
+          <option value="agricultural">Agricultural</option>
+          <option value="industrial">Industrial</option>
+          <option value="recladding">Recladding</option>
+          <option value="groundworks">Groundworks</option>
+        </select>
+        
+        <div class="project-count">
+          Showing <span id="showing-count">12</span> of <span id="total-count">120</span> projects
+        </div>
+      </div>
+      
+      <div class="projects-grid-enhanced" id="projects-grid">
+        <article class="project-card" data-category="recladding">
+          <div class="project-images">
+            <img data-photo="PROJECTS.RECLAD_STOCKTON.THUMBNAIL" alt="Recladding project in Stockton" width="600" height="400" loading="lazy" class="project-main-img">
+            <div class="project-badge">Recladding</div>
+          </div>
+          <div class="project-info">
+            <h3>Industrial Recladding - Stockton</h3>
+            <p class="project-description">
+              Complete recladding job in Stockton. Stripped off old deteriorated sheets, 
+              altered existing framework, and supplied & installed Micro-rib sheets.
+            </p>
+            <button class="view-gallery-btn" data-project="recladStockton">
+              View Gallery (3 photos) →
+            </button>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="agricultural">
+          <div class="project-images">
+            <img data-photo="PROJECTS.DRYER_SHED.THUMBNAIL" alt="Bespoke agricultural dryer shed" width="600" height="400" loading="lazy" class="project-main-img">
+            <div class="project-badge">Agricultural</div>
+          </div>
+          <div class="project-info">
+            <h3>Bespoke Dryer Shed</h3>
+            <p class="project-description">
+              Supply and installation of a custom-designed dryer shed for agricultural use.
+            </p>
+            <button class="view-gallery-btn" data-project="dryer">
+              View Gallery (4 photos) →
+            </button>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="industrial">
+          <div class="project-images">
+            <img data-photo="PROJECTS.LEANTO.THUMBNAIL" alt="80x20ft lean-to steel building" width="600" height="400" loading="lazy" class="project-main-img">
+            <div class="project-badge">New Build</div>
+          </div>
+          <div class="project-info">
+            <h3>80x20ft Lean-to Structure</h3>
+            <p class="project-description">
+              Recently completed 80x20ft lean-to structure with full steel erection and cladding.
+            </p>
+            <button class="view-gallery-btn" data-project="leanto">
+              View Gallery (3 photos) →
+            </button>
+          </div>
+        </article>
+
+        <article class="project-card" data-category="agricultural">
+          <div class="project-images">
+            <img data-photo="PROJECTS.DOUBLE_SPAN.THUMBNAIL" alt="Double span agricultural building" width="600" height="400" loading="lazy" class="project-main-img">
+            <div class="project-badge">Agricultural</div>
+          </div>
+          <div class="project-info">
+            <h3>Double Span Agricultural Building</h3>
+            <p class="project-description">
+              Large-scale agricultural building with double span design for maximum storage.
+            </p>
+          </div>
+        </article>
+
+        <div class="project-card placeholder-card" style="grid-column: 1 / -1; background: var(--light-grey); text-align: center; padding: 60px 20px;">
+          <h3 style="margin-bottom: 15px; color: #333;">Portfolio Update in Progress</h3>
+          <p style="margin-bottom: 25px; color: #666; max-width: 700px; margin-left: auto; margin-right: auto;">
+            We're currently uploading our complete portfolio of 120+ projects including agricultural buildings, 
+            industrial warehouses, groundworks, and steel erection projects across Hartlepool and the North East. 
+            Check back soon for our full gallery, or contact us to discuss your project.
+          </p>
+          <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+            <a href="tel:07555804062" class="btn-primary btn-call">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="20" height="20">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+              </svg>
+              Call: 07555 804062
+            </a>
+            <a href="/#contact" class="btn-secondary">Get a Quote</a>
+          </div>
+          <p style="margin-top: 30px; color: #666;">
+            <a href="https://www.facebook.com/profile.php?id=100089807464669" target="_blank" rel="noopener noreferrer" class="fb-link">
+              Follow us on Facebook for regular project updates →
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <div class="pagination" id="pagination">
+        <button class="pagination-btn" id="prev-btn" disabled>← Previous</button>
+        <div class="pagination-numbers" id="pagination-numbers"></div>
+        <button class="pagination-btn" id="next-btn">Next →</button>
+      </div>
+    </div>
+  </section>
+
+  <ProjectModal />
+
+  <script src="/src/scripts/projects.js" is:inline></script>
+</Layout>

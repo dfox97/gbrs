@@ -1,0 +1,142 @@
+.projects {
+  background: var(--light-grey);
+}
+
+.projects h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .projects h2 {
+    font-size: 2.5rem;
+  }
+}
+
+.projects-intro {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 50px;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.fb-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.fb-link:hover,
+.fb-link:focus {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+.projects-grid-enhanced {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto 50px;
+}
+
+@media (min-width: 768px) {
+  .projects-grid-enhanced {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .projects-grid-enhanced {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.projects-cta {
+  text-align: center;
+  padding: 40px 20px;
+  background: white;
+  border-radius: 12px;
+  margin-top: 50px;
+}
+
+.projects-cta p {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.projects-filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 40px;
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.projects-filter label {
+  font-weight: 600;
+  color: #333;
+  margin-right: 10px;
+}
+
+.project-count {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.project-count span {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 60px;
+  flex-wrap: wrap;
+}
+
+.pagination-numbers {
+  display: flex;
+  gap: 5px;
+}
+
+.page-number {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #e0e0e0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  color: #666;
+  background: white;
+}
+
+.page-number:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.page-number.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
