@@ -1,5 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import ContactButton from '../../components/buttons/ContactButton.astro';
 ---
 
 <Layout 
@@ -50,13 +51,7 @@ import Layout from '../../layouts/Layout.astro';
         Get in touch today for a free, no-obligation quote. We're here to help bring your construction project to life.
       </p>
       <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-        <a href="tel:07555804062" class="btn-primary btn-call">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="20" height="20">
-            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-          </svg>
-          Call: 07555 804062
-        </a>
-        <a href="/#contact" class="btn-secondary">Get a Quote</a>
+        <ContactButton btnText="Get a Quote" />
       </div>
     </div>
   </section>

@@ -1,5 +1,6 @@
 ---
 import Header from '../components/nav-bar/Header.astro';
+import Footer from '../components/footer/Footer.astro';
 
 interface Props {
   title?: string;
@@ -125,59 +126,11 @@ const structuredDataJson = {
     </a>
   </div>
 
-    <!-- HEADER -->
   <Header/>
 
+    <slot />
 
-  <slot />
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-section">
-          <h3>GBRS Services Ltd</h3>
-          <p class="footer-note">Family-run construction specialists serving Hartlepool, County Durham, and the North East.</p>
-          <p><em>From Foundations to Finish</em></p>
-          <p class="footer-note">Est. 2022 • 40+ Years Combined Experience</p>
-        </div>
-
-        <div class="footer-section">
-          <h3>Quick Links</h3>
-          <ul class="footer-list">
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About Us</a></li>
-            <li><a href="/services">Services</a></li>
-            <li><a href="/projects">Projects</a></li>
-            <li><a href="/#contact">Contact</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-section">
-          <h3>Contact</h3>
-          <p><strong>Email:</strong> <a href="mailto:gbrsltd@gmail.com">gbrsltd@gmail.com</a></p>
-          <p><strong>Phone:</strong> <a href="tel:07555804062">07555 804062</a></p>
-          <p><strong>Address:</strong> North farm, The Green, Elwick, Hartlepool TS27 3ED</p>
-        </div>
-
-        <div class="footer-section">
-          <h3>Opening Hours</h3>
-          <div class="opening-hours-item">
-            <strong>Monday - Friday</strong>
-            <span>07:00 - 21:00</span>
-          </div>
-          <div class="opening-hours-item">
-            <strong>Saturday - Sunday</strong>
-            <span>10:00 - 16:00</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p>© 2025 GBRS Services Ltd. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+  <Footer />
 
   <script src="/src/scripts/photos.js" is:inline></script>
   <script src="/src/scripts/main.js" is:inline></script>
