@@ -1,40 +1,192 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import ContactButton from '../../components/buttons/ContactButton.astro';
 ---
 
 <Layout 
-  title="Certifications | GBRS Services | Hartlepool Construction"
-  description="GBRS Services certifications and accreditations. Professional construction standards in Hartlepool and the North East."
+  title="Who Are We | GBRS Services | Hartlepool Construction"
+  description="About GBRS Services - Family-run construction business in Hartlepool. Meet our team and learn about 40+ years experience in agricultural and industrial building."
   activePage="about"
 >
   <section class="page-hero" id="main">
     <div class="hero-overlay">
       <h1>Certifications & Accreditations</h1>
-      <p class="hero-subtitle">Professional Standards & Quality Assurance</p>
+      <p class="hero-subtitle">Committed to Excellence and Safety</p>
     </div>
   </section>
 
-  <section class="certifications section">
+  <section class="about section">
+    <div class="container">
+      <div class="about-content">
+        <div class="section-header">
+          <span class="section-tag">Quality Assured</span>
+          <h2>Professional Qualifications & Certifications</h2>
+        </div>
+        <p class="lead-text">
+          At <strong>GBRS Services Ltd</strong>, we maintain the highest industry standards through our commitment to professional certifications and continuous training.
+        </p>
+        <p>
+          Our team holds industry-recognized qualifications ensuring we deliver safe, compliant, and professional construction services across all our projects.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="certifications-list-section section" style="background: white; padding-top: 0;">
+    <div class="container">
+      <div class="certifications-list">
+        
+        <article class="cert-item">
+          <div class="cert-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--primary)" width="48" height="48">
+              <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm-1 15l-4-4 1.41-1.41L11 14.17l5.59-5.59L18 10l-7 7z"/>
+            </svg>
+          </div>
+          <div class="cert-content">
+            <h3>SWQR - Street Works Qualification Register</h3>
+            <p class="cert-description">
+              The SWQR qualification certifies that our operatives and supervisors are fully trained and competent to carry out work on public highways in accordance with the New Roads and Street Works Act 1991 (NRSWA).
+            </p>
+            <p>
+              This certification means our team is legally qualified to install, maintain, and repair utilities or infrastructure in streets while ensuring public safety, compliance with regulations, and minimal disruption to traffic and pedestrians.
+            </p>
+            <a href="https://www.swqr.org.uk/SWQR/Home" target="_blank" rel="noopener noreferrer" class="cert-link">
+              Learn more about SWQR →
+            </a>
+          </div>
+        </article>
+
+        <article class="cert-item">
+          <div class="cert-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--primary)" width="48" height="48">
+              <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm-1 15l-4-4 1.41-1.41L11 14.17l5.59-5.59L18 10l-7 7z"/>
+            </svg>
+          </div>
+          <div class="cert-content">
+            <h3>CSCS - Construction Skills Certification Scheme</h3>
+            <p class="cert-description">
+              CSCS cards provide proof that individuals working on construction sites have the required training and qualifications for their role.
+            </p>
+            <p>
+              Our team members hold valid CSCS cards, demonstrating their competence and commitment to health and safety on construction sites across the UK.
+            </p>
+            <a href="https://www.cscs.uk.com/" target="_blank" rel="noopener noreferrer" class="cert-link">
+              Learn more about CSCS →
+            </a>
+          </div>
+        </article>
+
+        <article class="cert-item">
+          <div class="cert-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--primary)" width="48" height="48">
+              <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm-1 15l-4-4 1.41-1.41L11 14.17l5.59-5.59L18 10l-7 7z"/>
+            </svg>
+          </div>
+          <div class="cert-content">
+            <h3>NPORS - National Plant Operators Registration Scheme</h3>
+            <p class="cert-description">
+              NPORS provides nationally recognized qualifications for plant and equipment operators.
+            </p>
+            <p>
+              Our operators hold NPORS certifications for the machinery and equipment used on our construction sites, ensuring safe and competent operation.
+            </p>
+            <a href="https://npors.com/" target="_blank" rel="noopener noreferrer" class="cert-link">
+              Learn more about NPORS →
+            </a>
+          </div>
+        </article>
+
+        <article class="cert-item">
+          <div class="cert-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--primary)" width="48" height="48">
+              <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm-1 15l-4-4 1.41-1.41L11 14.17l5.59-5.59L18 10l-7 7z"/>
+            </svg>
+          </div>
+          <div class="cert-content">
+            <h3>EUSR - Energy & Utility Skills Register</h3>
+            <p class="cert-description">
+              The EUSR card scheme provides proof of competence for those working in the gas, power, water, and telecommunications industries.
+            </p>
+            <p>
+              Relevant team members hold EUSR cards for work involving utilities infrastructure and services.
+            </p>
+            <a href="https://eusr.co.uk/" target="_blank" rel="noopener noreferrer" class="cert-link">
+              Learn more about EUSR →
+            </a>
+          </div>
+        </article>
+
+        <article class="cert-item">
+          <div class="cert-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--primary)" width="48" height="48">
+              <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm-1 15l-4-4 1.41-1.41L11 14.17l5.59-5.59L18 10l-7 7z"/>
+            </svg>
+          </div>
+          <div class="cert-content">
+            <h3>IOSH - Institution of Occupational Safety and Health</h3>
+            <p class="cert-description">
+              IOSH provides professional health and safety qualifications recognized worldwide.
+            </p>
+            <p>
+              Our commitment to health and safety includes IOSH training, ensuring our team understands their responsibilities and can identify and manage workplace risks effectively.
+            </p>
+            <a href="https://iosh.com/" target="_blank" rel="noopener noreferrer" class="cert-link">
+              Learn more about IOSH →
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="values section" style="background: var(--light-grey);">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Our Credentials</span>
-        <h2>Industry Certifications</h2>
+        <span class="section-tag">Our Commitment</span>
+        <h2>Why Certifications Matter</h2>
       </div>
-      <p class="services-intro">
-        At GBRS Services, we maintain the highest professional standards in construction. 
-        Our team is committed to safety, quality, and compliance across all our projects.
-      </p>
 
-      <div style="text-align: center; padding: 60px 20px; background: var(--light-grey); border-radius: 8px; margin-top: 40px;">
-        <h3 style="margin-bottom: 15px; color: #333;">Certification Details Coming Soon</h3>
-        <p style="margin-bottom: 25px; color: #666; max-width: 600px; margin-left: auto; margin-right: auto;">
-          We're currently updating our certifications page with our latest accreditations and industry credentials. 
-          Contact us to learn more about our professional standards and qualifications.
-        </p>
-        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-          <a href="tel:07555804062" class="btn-primary">Call: 07555 804062</a>
-          <a href="/#contact" class="btn-secondary">Get in Touch</a>
+      <div class="values-grid">
+        <div class="value-card">
+          <h3>Professional Competence</h3>
+          <p>
+            Industry-recognized certifications ensure our team has the knowledge and skills to deliver your project safely and to the highest standards.
+          </p>
         </div>
+
+        <div class="value-card">
+          <h3>Legal Compliance</h3>
+          <p>
+            Many certifications are legal requirements for specific types of work, particularly street works and utility installations. We ensure full compliance.
+          </p>
+        </div>
+
+        <div class="value-card">
+          <h3>Safety First</h3>
+          <p>
+            Health and safety qualifications demonstrate our commitment to protecting our team, clients, and the public on every project.
+          </p>
+        </div>
+
+        <div class="value-card">
+          <h3>Peace of Mind</h3>
+          <p>
+            Working with a certified team gives you confidence that your project is in capable, qualified hands from start to finish.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section section" style="background: white; text-align: center;">
+    <div class="container">
+      <h2 style="font-size: 2.2rem; margin-bottom: 20px; color: #111;">Work with a Qualified Team</h2>
+      <p style="font-size: 1.2rem; margin-bottom: 30px; color: #555; max-width: 700px; margin-left: auto; margin-right: auto;">
+        Get in touch today to discuss your project requirements. We're happy to provide certification and insurance documentation.
+      </p>
+      <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+        <ContactButton btnText="Get a Quote" />
       </div>
     </div>
   </section>
