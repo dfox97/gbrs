@@ -1,5 +1,14 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { getEntry } from 'astro:content';
+import ProjectCard from '../../components/ProjectCard.astro';
+
+const dryerProject = await getEntry('projects', 'dryer-shed');
+const doubleSpanProject = await getEntry('projects', 'double-span');
+
+if (!dryerProject || !doubleSpanProject) {
+  throw new Error('Required projects not found');
+}
 ---
 
 <Layout 
@@ -7,12 +16,12 @@ import Layout from '../../layouts/Layout.astro';
   description="Agricultural building projects by GBRS Services Hartlepool. View our completed grain stores, barns, livestock housing, and agricultural structures."
   activePage="services"
 >
-  <section class="page-hero" id="main">
+ <section class="page-hero" id="main">
     <div class="hero-overlay">
       <h1>Agricultural Buildings</h1>
       <p class="hero-subtitle">Custom steel-framed structures for modern farming</p>
       <div style="margin-top: 20px;">
-        <a href="/services" class="btn-secondary" style="background: rgba(255,255,255,0.2); border-color: white;">← Back to Services</a>
+        <a href="../../services.html" class="btn-secondary" style="background: rgba(255,255,255,0.2); border-color: white;">← Back to Services</a>
       </div>
     </div>
   </section>
@@ -27,15 +36,29 @@ import Layout from '../../layouts/Layout.astro';
         we deliver functional, durable structures tailored to your farming needs.
       </p>
       
-      <div style="text-align: center; padding: 60px 20px; background: var(--light-grey); border-radius: 8px; margin-top: 40px;">
-        <h3 style="margin-bottom: 15px; color: #333;">Agricultural Projects Gallery Coming Soon</h3>
-        <p style="margin-bottom: 25px; color: #666; max-width: 600px; margin-left: auto; margin-right: auto;">
-          We're currently uploading our full portfolio of agricultural building projects. 
-          Contact us to discuss your agricultural construction needs or view recent work on our Facebook page.
-        </p>
-        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-          <a href="tel:07555804062" class="btn-primary">Call: 07555 804062</a>
-          <a href="/#contact" class="btn-secondary">Get a Quote</a>
+      <div class="projects-grid-enhanced">
+        <ProjectCard project={dryerProject}>
+           <ul class="project-highlights">
+              <li>Custom design & build</li>
+              <li>Agricultural specification</li>
+              <li>Complete installation</li>
+              <li>Turnkey solution</li>
+            </ul>
+        </ProjectCard>
+
+        <ProjectCard project={doubleSpanProject}>
+             <ul class="project-highlights">
+              <li>Double span design</li>
+              <li>Large clear span</li>
+              <li>Durable construction</li>
+              <li>Efficient layout</li>
+            </ul>
+        </ProjectCard>
+
+        <div class="project-card" style="grid-column: 1 / -1; background: var(--light-grey); text-align: center; padding: 60px 20px;">
+          <h3 style="margin-bottom: 15px; color: #333;">More Projects Coming Soon</h3>
+          <p style="margin-bottom: 25px; color: #666;">We're currently updating our portfolio with 120+ completed projects. Check back soon or contact us to discuss your requirements.</p>
+          <a href="../../index.html#contact" class="btn-primary">Get a Free Quote</a>
         </div>
       </div>
     </div>

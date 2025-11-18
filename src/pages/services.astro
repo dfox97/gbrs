@@ -1,6 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ContactButton from '../components/buttons/ContactButton.astro';
+import { Image } from 'astro:assets';
+
+// Service Card Images
+import agImg from '../assets/photos/George-gbrs/Agricultural/project-1-agricultural_building_1.jpg';
+import indImg from '../assets/photos/George-gbrs/Industrial/Industrial_building_1.jpg';
+import groundImg from '../assets/photos/George-gbrs/Groundworks-&-Civils/Groundworks_4.jpg';
+import steelImg from '../assets/photos/George-gbrs/Steel-erection-&-cladding/Project-2-steel_erection_building_5.jpg';
+//building supplies
+import suppliesImg from '../assets/photos/George-gbrs/Steel-suppply-&-buiilding-materials/Steel_supply_building_2.jpg';
+import maintenanceImg from '../assets/photos/George-gbrs/Building-maintenance-&-repairs/Project-maintenance.jpg';
 ---
 
 <Layout 
@@ -26,7 +36,7 @@ import ContactButton from '../components/buttons/ContactButton.astro';
       <div class="service-detail-grid">
         <article id="agricultural" class="service-detail-card">
           <div class="service-detail-header">
-            <img data-photo="SERVICES.AGRICULTURAL" alt="Agricultural steel buildings" width="800" height="500" loading="lazy">
+            <Image src={agImg} alt="Agricultural steel buildings" width={1200} densities={[1.5, 2]} loading="lazy" />
             <div class="service-badge-large">Agricultural Buildings</div>
           </div>
           <div class="service-detail-content">
@@ -52,7 +62,7 @@ import ContactButton from '../components/buttons/ContactButton.astro';
 
         <article id="industrial" class="service-detail-card">
           <div class="service-detail-header">
-            <img data-photo="SERVICES.INDUSTRIAL" alt="Industrial buildings and warehouses" width="800" height="500" loading="lazy">
+            <Image src={indImg} alt="Industrial buildings and warehouses" width={1200} densities={[1.5, 2]} loading="lazy" />
             <div class="service-badge-large">Industrial Buildings</div>
           </div>
           <div class="service-detail-content">
@@ -78,7 +88,7 @@ import ContactButton from '../components/buttons/ContactButton.astro';
 
         <article id="groundworks" class="service-detail-card">
           <div class="service-detail-header">
-            <img data-photo="SERVICES.GROUNDWORKS" alt="Groundworks and foundations" width="800" height="500" loading="lazy">
+            <Image src={groundImg} alt="Groundworks and foundations" width={1200} densities={[1.5, 2]} loading="lazy" />
             <div class="service-badge-large">Groundworks & Civils</div>
           </div>
           <div class="service-detail-content">
@@ -104,7 +114,7 @@ import ContactButton from '../components/buttons/ContactButton.astro';
 
         <article id="steel" class="service-detail-card">
           <div class="service-detail-header">
-            <img data-photo="SERVICES.STEEL_ERECTION" alt="Steel erection and cladding" width="800" height="500" loading="lazy">
+            <Image src={steelImg} alt="Steel erection and cladding" width={1200} densities={[1.5, 2]} loading="lazy" />
             <div class="service-badge-large">Steel Erection & Cladding</div>
           </div>
           <div class="service-detail-content">
@@ -130,7 +140,7 @@ import ContactButton from '../components/buttons/ContactButton.astro';
 
         <article id="supplies" class="service-detail-card">
           <div class="service-detail-header">
-            <img data-photo="SERVICES.BUILDING_SUPPLIES" alt="Building supplies and steel supply" width="800" height="500" loading="lazy">
+            <Image src={suppliesImg} alt="Steel erection and cladding" width={1200} densities={[1.5, 2]} loading="lazy" />
             <div class="service-badge-large">Building Supplies</div>
           </div>
           <div class="service-detail-content">
@@ -159,7 +169,7 @@ import ContactButton from '../components/buttons/ContactButton.astro';
 
         <article id="maintenance" class="service-detail-card">
           <div class="service-detail-header">
-            <img data-photo="SERVICES.MAINTENANCE" alt="Maintenance and repairs" width="800" height="500" loading="lazy">
+            <Image src={maintenanceImg} alt="Maintenance and repairs" width={1200} densities={[1.5, 2]} loading="lazy" />
             <div class="service-badge-large">Maintenance & Repairs</div>
           </div>
           <div class="service-detail-content">

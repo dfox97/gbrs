@@ -1,5 +1,9 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { getEntry } from 'astro:content';
+import ProjectCard from '../../components/ProjectCard.astro';
+
+const steelProject = await getEntry('projects', 'double-span');
 ---
 
 <Layout 
@@ -9,10 +13,10 @@ import Layout from '../../layouts/Layout.astro';
 >
   <section class="page-hero" id="main">
     <div class="hero-overlay">
-      <h1>Steel Erection & Cladding</h1>
-      <p class="hero-subtitle">Expert steel frame erection and cladding</p>
+      <h1>Steel Erection</h1>
+      <p class="hero-subtitle">Expert steel frame construction for various structures</p>
       <div style="margin-top: 20px;">
-        <a href="/services" class="btn-secondary" style="background: rgba(255,255,255,0.2); border-color: white;">← Back to Services</a>
+        <a href="../../services.html" class="btn-secondary" style="background: rgba(255,255,255,0.2); border-color: white;">← Back to Services</a>
       </div>
     </div>
   </section>
@@ -23,19 +27,23 @@ import Layout from '../../layouts/Layout.astro';
         <h2>Steel Erection Projects</h2>
       </div>
       <p class="projects-intro">
-        View our completed steel erection and cladding projects. Professional portal frame erection, 
-        cladding installation, and re-cladding services.
+        Discover our steel erection projects across the North East. We provide professional and efficient steel frame installation for agricultural, industrial, and commercial buildings.
       </p>
       
-      <div style="text-align: center; padding: 60px 20px; background: var(--light-grey); border-radius: 8px; margin-top: 40px;">
-        <h3 style="margin-bottom: 15px; color: #333;">Steel Projects Gallery Coming Soon</h3>
-        <p style="margin-bottom: 25px; color: #666; max-width: 600px; margin-left: auto; margin-right: auto;">
-          We're currently uploading our full portfolio of steel erection projects. 
-          Contact us to discuss your steel construction needs.
-        </p>
-        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-          <a href="tel:07555804062" class="btn-primary">Call: 07555 804062</a>
-          <a href="/#contact" class="btn-secondary">Get a Quote</a>
+      <div class="projects-grid-enhanced">
+        <ProjectCard project={steelProject}>
+             <ul class="project-highlights">
+              <li>Primary steel structure</li>
+              <li>Secondary steelwork</li>
+              <li>Safety compliant</li>
+              <li>Efficient installation</li>
+            </ul>
+        </ProjectCard>
+
+        <div class="project-card" style="grid-column: 1 / -1; background: var(--light-grey); text-align: center; padding: 60px 20px;">
+          <h3 style="margin-bottom: 15px; color: #333;">More Projects Coming Soon</h3>
+          <p style="margin-bottom: 25px; color: #666;">We're currently updating our portfolio with 120+ completed projects. Check back soon or contact us to discuss your requirements.</p>
+          <a href="../../index.html#contact" class="btn-primary">Get a Free Quote</a>
         </div>
       </div>
     </div>

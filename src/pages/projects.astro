@@ -1,7 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ProjectModal from '../components/ProjectModal.astro';
+import ProjectCard from '../components/ProjectCard.astro';
 import ContactButton from '../components/buttons/ContactButton.astro';
+import { getCollection } from 'astro:content';
+
+const projectsRaw = await getCollection('projects');
+const sortedProjects = projectsRaw.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <Layout 
@@ -34,67 +39,9 @@ import ContactButton from '../components/buttons/ContactButton.astro';
       </div>
       
       <div class="projects-grid-enhanced" id="projects-grid">
-        <article class="project-card" data-category="recladding">
-          <div class="project-images">
-            <img data-photo="PROJECTS.RECLAD_STOCKTON.THUMBNAIL" alt="Recladding project in Stockton" width="600" height="400" loading="lazy" class="project-main-img">
-            <div class="project-badge">Recladding</div>
-          </div>
-          <div class="project-info">
-            <h3>Industrial Recladding - Stockton</h3>
-            <p class="project-description">
-              Complete recladding job in Stockton. Stripped off old deteriorated sheets, 
-              altered existing framework, and supplied & installed Micro-rib sheets.
-            </p>
-            <button class="view-gallery-btn" data-project="recladStockton">
-              View Gallery (3 photos) →
-            </button>
-          </div>
-        </article>
-
-        <article class="project-card" data-category="agricultural">
-          <div class="project-images">
-            <img data-photo="PROJECTS.DRYER_SHED.THUMBNAIL" alt="Bespoke agricultural dryer shed" width="600" height="400" loading="lazy" class="project-main-img">
-            <div class="project-badge">Agricultural</div>
-          </div>
-          <div class="project-info">
-            <h3>Bespoke Dryer Shed</h3>
-            <p class="project-description">
-              Supply and installation of a custom-designed dryer shed for agricultural use.
-            </p>
-            <button class="view-gallery-btn" data-project="dryer">
-              View Gallery (4 photos) →
-            </button>
-          </div>
-        </article>
-
-        <article class="project-card" data-category="industrial">
-          <div class="project-images">
-            <img data-photo="PROJECTS.LEANTO.THUMBNAIL" alt="80x20ft lean-to steel building" width="600" height="400" loading="lazy" class="project-main-img">
-            <div class="project-badge">New Build</div>
-          </div>
-          <div class="project-info">
-            <h3>80x20ft Lean-to Structure</h3>
-            <p class="project-description">
-              Recently completed 80x20ft lean-to structure with full steel erection and cladding.
-            </p>
-            <button class="view-gallery-btn" data-project="leanto">
-              View Gallery (3 photos) →
-            </button>
-          </div>
-        </article>
-
-        <article class="project-card" data-category="agricultural">
-          <div class="project-images">
-            <img data-photo="PROJECTS.DOUBLE_SPAN.THUMBNAIL" alt="Double span agricultural building" width="600" height="400" loading="lazy" class="project-main-img">
-            <div class="project-badge">Agricultural</div>
-          </div>
-          <div class="project-info">
-            <h3>Double Span Agricultural Building</h3>
-            <p class="project-description">
-              Large-scale agricultural building with double span design for maximum storage.
-            </p>
-          </div>
-        </article>
+        {sortedProjects.map(project => (
+          <ProjectCard project={project} />
+        ))}
 
         <div class="project-card placeholder-card" style="grid-column: 1 / -1; background: var(--light-grey); text-align: center; padding: 60px 20px;">
           <h3 style="margin-bottom: 15px; color: #333;">Portfolio Update in Progress</h3>
@@ -124,5 +71,105 @@ import ContactButton from '../components/buttons/ContactButton.astro';
 
   <ProjectModal />
 
-  <script src="/src/scripts/projects.js" is:inline></script>
+  <script is:inline>
+    // Pagination and Filtering Logic
+    let currentPage = 1;
+    const projectsPerPage = 12;
+    const projectCards = Array.from(document.querySelectorAll('.project-card:not(.placeholder-card)'));
+    const totalProjects = projectCards.length; 
+    
+    const totalVisibleProjects = projectCards.length;
+    const totalPages = Math.ceil(totalVisibleProjects / projectsPerPage);
+
+    const categoryFilter = document.getElementById('category-filter');
+    const showingCount = document.getElementById('showing-count');
+    const totalCount = document.getElementById('total-count');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const paginationNumbers = document.getElementById('pagination-numbers');
+
+    // Initial update of counts
+    if (totalCount) totalCount.textContent = totalVisibleProjects + "+"; 
+
+    function updatePagination() {
+      const selectedCategory = categoryFilter ? categoryFilter.value : 'all';
+      const visibleCards = projectCards.filter(card => {
+        return selectedCategory === 'all' || card.dataset.category === selectedCategory;
+      });
+
+      const pageCount = Math.ceil(visibleCards.length / projectsPerPage);
+      if (currentPage > pageCount) currentPage = 1;
+      
+      // Hide all first
+      projectCards.forEach(card => card.style.display = 'none');
+
+      // Show current page of filtered items
+      const start = (currentPage - 1) * projectsPerPage;
+      const end = start + projectsPerPage;
+      const pageItems = visibleCards.slice(start, end);
+      
+      pageItems.forEach(card => card.style.display = '');
+
+      // Update UI
+      if (prevBtn) prevBtn.disabled = currentPage === 1;
+      if (nextBtn) nextBtn.disabled = currentPage === pageCount || pageCount === 0;
+      
+      if (showingCount) showingCount.textContent = pageItems.length;
+      
+      renderPaginationNumbers(pageCount);
+    }
+
+    function renderPaginationNumbers(count) {
+      if (!paginationNumbers) return;
+      paginationNumbers.innerHTML = '';
+      
+      for (let i = 1; i <= count; i++) {
+        const btn = document.createElement('button');
+        btn.className = 'page-number';
+        btn.textContent = i;
+        if (i === currentPage) btn.classList.add('active');
+        btn.addEventListener('click', () => {
+          currentPage = i;
+          updatePagination();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        paginationNumbers.appendChild(btn);
+      }
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        if (currentPage > 1) {
+          currentPage--;
+          updatePagination();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        const selectedCategory = categoryFilter ? categoryFilter.value : 'all';
+        const visibleCards = projectCards.filter(card => {
+           return selectedCategory === 'all' || card.dataset.category === selectedCategory;
+        });
+        const pageCount = Math.ceil(visibleCards.length / projectsPerPage);
+
+        if (currentPage < pageCount) {
+          currentPage++;
+          updatePagination();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      });
+    }
+
+    if (categoryFilter) {
+      categoryFilter.addEventListener('change', () => {
+        currentPage = 1;
+        updatePagination();
+      });
+    }
+
+    updatePagination();
+  </script>
 </Layout>

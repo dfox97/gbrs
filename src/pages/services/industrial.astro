@@ -1,5 +1,9 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { getEntry } from 'astro:content';
+import ProjectCard from '../../components/ProjectCard.astro';
+
+const recladProject = await getEntry('projects', 'reclad-stockton');
 ---
 
 <Layout 
@@ -7,12 +11,12 @@ import Layout from '../../layouts/Layout.astro';
   description="Industrial building projects by GBRS Services Hartlepool. View our completed warehouses, workshops, and commercial structures."
   activePage="services"
 >
-  <section class="page-hero" id="main">
+ <section class="page-hero" id="main">
     <div class="hero-overlay">
       <h1>Industrial Buildings</h1>
-      <p class="hero-subtitle">Commercial and industrial steel structures</p>
+      <p class="hero-subtitle">Robust steel-framed structures for your business needs</p>
       <div style="margin-top: 20px;">
-        <a href="/services" class="btn-secondary" style="background: rgba(255,255,255,0.2); border-color: white;">← Back to Services</a>
+        <a href="../../services.html" class="btn-secondary" style="background: rgba(255,255,255,0.2); border-color: white;">← Back to Services</a>
       </div>
     </div>
   </section>
@@ -23,19 +27,24 @@ import Layout from '../../layouts/Layout.astro';
         <h2>Industrial Projects</h2>
       </div>
       <p class="projects-intro">
-        View our completed industrial building projects across the North East. Warehouses, workshops, and 
-        commercial facilities built to last.
+        View our completed industrial building projects across the North East. From new builds to refurbishments,
+        we deliver functional, durable structures tailored to your commercial and industrial requirements.
       </p>
       
-      <div style="text-align: center; padding: 60px 20px; background: var(--light-grey); border-radius: 8px; margin-top: 40px;">
-        <h3 style="margin-bottom: 15px; color: #333;">Industrial Projects Gallery Coming Soon</h3>
-        <p style="margin-bottom: 25px; color: #666; max-width: 600px; margin-left: auto; margin-right: auto;">
-          We're currently uploading our full portfolio of industrial building projects. 
-          Contact us to discuss your industrial construction needs.
-        </p>
-        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-          <a href="tel:07555804062" class="btn-primary">Call: 07555 804062</a>
-          <a href="/#contact" class="btn-secondary">Get a Quote</a>
+      <div class="projects-grid-enhanced">
+        <ProjectCard project={recladProject}>
+            <ul class="project-highlights">
+              <li>Full external reclad</li>
+              <li>Improved insulation</li>
+              <li>Modernized appearance</li>
+              <li>Minimal business disruption</li>
+            </ul>
+        </ProjectCard>
+
+        <div class="project-card" style="grid-column: 1 / -1; background: var(--light-grey); text-align: center; padding: 60px 20px;">
+          <h3 style="margin-bottom: 15px; color: #333;">More Projects Coming Soon</h3>
+          <p style="margin-bottom: 25px; color: #666;">We're currently updating our portfolio with 120+ completed projects. Check back soon or contact us to discuss your requirements.</p>
+          <a href="../../index.html#contact" class="btn-primary">Get a Free Quote</a>
         </div>
       </div>
     </div>

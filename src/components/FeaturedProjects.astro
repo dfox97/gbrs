@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import ProjectCard from './ProjectCard.astro';
+
+const allProjects = await getCollection('projects');
+const featuredProjects = allProjects
+  .filter(p => p.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<section id="projects" class="projects section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Our Work</span>
+      <h2>Featured Projects</h2>
+    </div>
+    <p class="projects-intro">
+      See our latest completed projects across Hartlepool and the North East. 
+    </p>
+    
+    <div class="projects-grid-enhanced">
+      {featuredProjects.map(project => (
+        <ProjectCard project={project} />
+      ))}
+    </div>
+
+    <div class="projects-cta">
+      <p>View our complete portfolio of 120+ completed projects</p>
+      <a href="/projects" class="btn-primary">Browse All Projects</a>
+    </div>
+  </div>
+</section>

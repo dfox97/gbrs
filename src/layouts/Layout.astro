@@ -1,6 +1,7 @@
 ---
 import Header from '../components/nav-bar/Header.astro';
 import Footer from '../components/footer/Footer.astro';
+import ProjectModal from '../components/ProjectModal.astro';
 
 interface Props {
   title?: string;
@@ -90,12 +91,12 @@ const structuredDataJson = {
   <meta property="og:title" content={title} />
   <meta property="og:description" content={description} />
   <meta property="og:url" content="https://www.gbrsltd.co.uk" />
-  <meta property="og:image" content="https://www.gbrsltd.co.uk/photos/gbrs_ltd_logo.jpg" />
+  <meta property="og:image" content="https://www.gbrsltd.co.uk/gbrs_ltd_logo.jpg" />
   
   <title>{title}</title>
 
   <!-- Favicon -->
-  <link rel="icon" type="image/jpeg" href="/photos/gbrs_ltd_logo.jpg">
+  <link rel="icon" type="image/jpeg" href="/gbrs_ltd_logo.jpg">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
   <!-- Fonts -->
@@ -104,7 +105,7 @@ const structuredDataJson = {
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
   {structuredData && (
-    <script type="application/ld+json" set:html={JSON.stringify(structuredDataJson)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredDataJson)} />
   )}
 </head>
 
@@ -132,7 +133,8 @@ const structuredDataJson = {
 
   <Footer />
 
-  <script src="/src/scripts/photos.js" is:inline></script>
+  <ProjectModal />
+
   <script src="/src/scripts/main.js" is:inline></script>
 </body>
 </html>

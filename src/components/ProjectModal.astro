@@ -16,3 +16,148 @@
     </div>
   </div>
 </div>
+
+<script>
+  // Modal Logic
+  const modal = document.getElementById('projectModal');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalGallery = document.querySelector('.modal-gallery');
+  const modalCounter = document.querySelector('.modal-counter');
+  const modalClose = document.querySelector('.modal-close');
+  const modalPrev = document.querySelector('.modal-prev');
+  const modalNext = document.querySelector('.modal-next');
+
+  let currentProject = null;
+  let currentImageIndex = 0;
+
+  // Open modal when gallery button clicked
+  // We delegate the event listener to document to handle dynamically added buttons if any
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.view-gallery-btn');
+    if (btn) {
+      e.preventDefault();
+      const title = btn.dataset.title;
+      const galleryData = btn.dataset.gallery;
+      
+      if (title && galleryData) {
+        try {
+          const images = JSON.parse(galleryData);
+          openGallery(title, images);
+        } catch (err) {
+          console.error('Error parsing gallery data', err);
+        }
+      }
+    }
+  });
+
+  function openGallery(title, images) {
+    currentProject = { title, images };
+    currentImageIndex = 0;
+    
+    if (modalTitle) modalTitle.textContent = currentProject.title;
+    if (modal) modal.classList.add('active');
+    document.body.style.overflow = 'hidden'; // Prevent background scroll
+    
+    if (modalGallery) modalGallery.style.opacity = '0';
+
+    setTimeout(() => {
+      updateGalleryImage();
+    }, 50);
+  }
+
+  function updateGalleryImage() {
+    if (!currentProject || !modalGallery) return;
+
+    const images = currentProject.images;
+    const currentImageSrc = images[currentImageIndex];
+
+    const img = new Image();
+    img.src = currentImageSrc;
+    img.alt = `${currentProject.title} - view ${currentImageIndex + 1}`;
+    img.style.maxWidth = '100%';
+    img.style.maxHeight = '70vh';
+    img.style.objectFit = 'contain';
+    img.style.display = 'block';
+
+    modalGallery.style.opacity = '0';
+
+    img.onload = () => {
+      modalGallery.innerHTML = '';
+      modalGallery.appendChild(img);
+      modalGallery.style.opacity = '1';
+    };
+
+    img.onerror = () => {
+      modalGallery.innerHTML = '<p style="color:white; text-align:center;">Error loading image</p>';
+      modalGallery.style.opacity = '1';
+    };
+
+    if (modalCounter) modalCounter.textContent = `${currentImageIndex + 1} / ${images.length}`;
+
+    if (modalPrev) modalPrev.disabled = currentImageIndex === 0;
+    if (modalNext) modalNext.disabled = currentImageIndex === images.length - 1;
+
+    // Preload next/prev
+    if (currentImageIndex + 1 < images.length) {
+      new Image().src = images[currentImageIndex + 1];
+    }
+    if (currentImageIndex - 1 >= 0) {
+      new Image().src = images[currentImageIndex - 1];
+    }
+  }
+
+  function closeGallery() {
+    if (modal) modal.classList.remove('active');
+    document.body.style.overflow = '';
+    currentProject = null;
+    currentImageIndex = 0;
+    if (modalGallery) {
+      modalGallery.style.opacity = '';
+      modalGallery.innerHTML = '';
+    }
+  }
+
+  if (modalClose) modalClose.addEventListener('click', closeGallery);
+
+  if (modalPrev) {
+    modalPrev.addEventListener('click', () => {
+      if (currentImageIndex > 0) {
+        currentImageIndex--;
+        updateGalleryImage();
+      }
+    });
+  }
+
+  if (modalNext) {
+    modalNext.addEventListener('click', () => {
+      if (currentProject && currentImageIndex < currentProject.images.length - 1) {
+        currentImageIndex++;
+        updateGalleryImage();
+      }
+    });
+  }
+
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeGallery();
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (!modal || !modal.classList.contains('active')) return;
+
+    if (e.key === 'Escape') {
+      closeGallery();
+    } else if (e.key === 'ArrowLeft') {
+      if (modalPrev && !modalPrev.disabled) {
+        currentImageIndex--;
+        updateGalleryImage();
+      }
+    } else if (e.key === 'ArrowRight') {
+      if (modalNext && !modalNext.disabled) {
+        currentImageIndex++;
+        updateGalleryImage();
+      }
+    }
+  });
+</script>

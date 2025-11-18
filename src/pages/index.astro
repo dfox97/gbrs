@@ -1,8 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ContactForm from '../components/ContactForm.astro';
-import ProjectModal from '../components/ProjectModal.astro';
-import ContactButton from '../components/buttons/ContactButton.astro';
+import HeroOverlay from '../components/HeroOverlay.astro';
+import FeaturedProjects from '../components/FeaturedProjects.astro';
+import { Image } from 'astro:assets';
+
+// Service Card Images
+import agImg from '../assets/photos/George-gbrs/Agricultural/project-1-agricultural_building_1.jpg';
+import indImg from '../assets/photos/George-gbrs/Industrial/Industrial_building_1.jpg';
+import groundImg from '../assets/photos/George-gbrs/Groundworks-&-Civils/Groundworks_4.jpg';
+import steelImg from '../assets/photos/George-gbrs/Steel-erection-&-cladding/Project-2-steel_erection_building_5.jpg';
 ---
 
 <Layout 
@@ -12,33 +19,7 @@ import ContactButton from '../components/buttons/ContactButton.astro';
   activePage="home"
 >
   <!-- HERO -->
-  <section class="hero" id="main">
-    <div class="hero-overlay">
-      <div class="hero-badge">Est. 2022 • 40+ Years Combined Experience</div>
-      <h1>Agricultural & Industrial Building Specialists</h1>
-      <p class="hero-subtitle">From Foundations to Finish<br> Serving the North East</p>
-      
-      <!-- Prominent CTA buttons -->
-      <div class="hero-cta-group">
-        <ContactButton />
-      </div>
-      <!-- Trust indicators -->
-      <div class="hero-stats">
-        <div class="stat-item">
-          <strong>120+</strong>
-          <span>Projects Completed</span>
-        </div>
-        <div class="stat-item">
-          <strong>40+</strong>
-          <span>Years Experience</span>
-        </div>
-        <div class="stat-item">
-          <strong>5★</strong>
-          <span>Rated Service</span>
-        </div>
-      </div>
-    </div>
-  </section>
+  <HeroOverlay />
 
   <!-- ABOUT PREVIEW -->
   <section id="about" class="about section">
@@ -114,7 +95,7 @@ import ContactButton from '../components/buttons/ContactButton.astro';
 
       <div class="service-grid">
         <a href="/services#agricultural" class="service-card service-card-link">
-          <img data-photo="SERVICES.AGRICULTURAL" alt="Modern agricultural steel building construction in Hartlepool" width="400" height="300" loading="lazy">
+          <Image src={agImg} alt="Modern agricultural steel building construction in Hartlepool" width={400} height={300} />
           <div class="service-content">
             <h3>Agricultural Buildings</h3>
             <p>Complete steel-framed buildings for farms and agricultural facilities.</p>
@@ -122,7 +103,7 @@ import ContactButton from '../components/buttons/ContactButton.astro';
         </a>
         
         <a href="/services#industrial" class="service-card service-card-link">
-          <img data-photo="SERVICES.INDUSTRIAL" alt="Industrial buildings and warehouses" width="400" height="300" loading="lazy">
+          <Image src={indImg} alt="Industrial buildings and warehouses" width={400} height={300} />
           <div class="service-content">
             <h3>Industrial Buildings</h3>
             <p>Warehouses, workshops, and commercial steel structures.</p>
@@ -130,7 +111,7 @@ import ContactButton from '../components/buttons/ContactButton.astro';
         </a>
         
         <a href="/services#groundworks" class="service-card service-card-link">
-          <img data-photo="SERVICES.GROUNDWORKS" alt="Groundworks and civil engineering" width="400" height="300" loading="lazy">
+          <Image src={groundImg} alt="Groundworks and civil engineering" width={400} height={300} />
           <div class="service-content">
             <h3>Groundworks & Civils</h3>
             <p>Foundations, drainage, and civil engineering works.</p>
@@ -138,7 +119,7 @@ import ContactButton from '../components/buttons/ContactButton.astro';
         </a>
         
         <a href="/services#steel" class="service-card service-card-link">
-          <img data-photo="SERVICES.STEEL_ERECTION" alt="Steel erection and cladding" width="400" height="300" loading="lazy">
+          <Image src={steelImg} alt="Steel erection and cladding" width={400} height={300} />
           <div class="service-content">
             <h3>Steel Erection & Cladding</h3>
             <p>Expert steel frame erection and cladding services.</p>
@@ -152,74 +133,6 @@ import ContactButton from '../components/buttons/ContactButton.astro';
     </div>
   </section>
 
-  <!-- PROJECTS PREVIEW -->
-  <section id="projects" class="projects section">
-    <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Our Work</span>
-        <h2>Featured Projects</h2>
-      </div>
-      <p class="projects-intro">
-        See our latest completed projects across Hartlepool and the North East. 
-      </p>
-      
-      <div class="projects-grid-enhanced">
-        <article class="project-card">
-          <div class="project-images">
-            <img data-photo="PROJECTS.RECLAD_STOCKTON.THUMBNAIL" alt="Recladding project in Stockton" width="600" height="400" loading="lazy" class="project-main-img">
-            <div class="project-badge">Recladding</div>
-          </div>
-          <div class="project-info">
-            <h3>Industrial Recladding - Stockton</h3>
-            <p class="project-description">
-              Complete recladding job in Stockton with Micro-rib sheets in Anthracite grey.
-            </p>
-            <button class="view-gallery-btn" data-project="recladStockton">
-              View Gallery (3 photos) →
-            </button>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-images">
-            <img data-photo="PROJECTS.DRYER_SHED.THUMBNAIL" alt="Bespoke agricultural dryer shed" width="600" height="400" loading="lazy" class="project-main-img">
-            <div class="project-badge">Agricultural</div>
-          </div>
-          <div class="project-info">
-            <h3>Bespoke Dryer Shed</h3>
-            <p class="project-description">
-              Custom-designed dryer shed for agricultural use.
-            </p>
-            <button class="view-gallery-btn" data-project="dryer">
-              View Gallery (4 photos) →
-            </button>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-images">
-            <img data-photo="PROJECTS.LEANTO.THUMBNAIL" alt="80x20ft lean-to steel building" width="600" height="400" loading="lazy" class="project-main-img">
-            <div class="project-badge">New Build</div>
-          </div>
-          <div class="project-info">
-            <h3>80x20ft Lean-to Structure</h3>
-            <p class="project-description">
-              Full steel erection and cladding for storage space.
-            </p>
-            <button class="view-gallery-btn" data-project="leanto">
-              View Gallery (3 photos) →
-            </button>
-          </div>
-        </article>
-      </div>
-
-      <div class="projects-cta">
-        <p>View our complete portfolio of 120+ completed projects</p>
-        <a href="/projects" class="btn-primary">Browse All Projects</a>
-      </div>
-    </div>
-  </section>
-
-  <ProjectModal />
+  <FeaturedProjects />
   <ContactForm />
 </Layout>
