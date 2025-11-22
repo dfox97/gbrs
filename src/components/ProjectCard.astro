@@ -1,6 +1,4 @@
 ---
-import { Image, getImage } from 'astro:assets';
-
 interface Props {
   project: any;
 }
@@ -8,15 +6,12 @@ interface Props {
 const { project } = Astro.props;
 
 // Helper to get optimized gallery URLs
-async function getGallerySrcs(proj) {
+function getGallerySrcs(proj: any) {
   if (!proj.data.gallery) return [];
-  return await Promise.all(proj.data.gallery.map(async (imgMeta) => {
-    const optimized = await getImage({src: imgMeta});
-    return optimized.src;
-  }));
+  return proj.data.gallery.map((imgMeta: any) => imgMeta);
 }
 
-const gallerySrcs = await getGallerySrcs(project);
+const gallerySrcs = getGallerySrcs(project);
 
 function formatCategory(cat: string) {
   const map: Record<string, string> = {
@@ -32,7 +27,7 @@ function formatCategory(cat: string) {
 
 <article class="project-card" data-category={project.data.category}>
   <div class="project-images">
-    <Image 
+    <img 
       src={project.data.thumbnail} 
       alt={project.data.title} 
       width={600} height={400} 

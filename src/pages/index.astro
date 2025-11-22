@@ -3,13 +3,13 @@ import Layout from '../layouts/Layout.astro';
 import ContactForm from '../components/ContactForm.astro';
 import HeroOverlay from '../components/HeroOverlay.astro';
 import FeaturedProjects from '../components/FeaturedProjects.astro';
-import { Image } from 'astro:assets';
+
 
 // Service Card Images
-import agImg from '../assets/photos/George-gbrs/Agricultural/project-1-agricultural_building_1.jpg';
-import indImg from '../assets/photos/George-gbrs/Industrial/Industrial_building_1.jpg';
-import groundImg from '../assets/photos/George-gbrs/Groundworks-&-Civils/Groundworks_4.jpg';
-import steelImg from '../assets/photos/George-gbrs/Steel-erection-&-cladding/Project-2-steel_erection_building_5.jpg';
+import agImg from '../../public/images/George-gbrs/Agricultural/project-1-agricultural_building_1.jpg';
+import indImg from '../../public/images/George-gbrs/Industrial/Industrial_building_1.jpg';
+import groundImg from '../../public/images/George-gbrs/Groundworks-&-Civils/Groundworks_4.jpg';
+import steelImg from '../../public/images/George-gbrs/Steel-erection-&-cladding/Project-2-steel_erection_building_5.jpg';
 ---
 
 <Layout 
@@ -95,7 +95,7 @@ import steelImg from '../assets/photos/George-gbrs/Steel-erection-&-cladding/Pro
 
       <div class="service-grid">
         <a href="/services#agricultural" class="service-card service-card-link">
-          <Image src={agImg} alt="Modern agricultural steel building construction in Hartlepool" width={400} height={300} />
+          <img src={agImg} alt="Modern agricultural steel building construction in Hartlepool" width={400} height={300} />
           <div class="service-content">
             <h3>Agricultural Buildings</h3>
             <p>Complete steel-framed buildings for farms and agricultural facilities.</p>
@@ -103,7 +103,7 @@ import steelImg from '../assets/photos/George-gbrs/Steel-erection-&-cladding/Pro
         </a>
         
         <a href="/services#industrial" class="service-card service-card-link">
-          <Image src={indImg} alt="Industrial buildings and warehouses" width={400} height={300} />
+          <img src={indImg} alt="Industrial buildings and warehouses" width={400} height={300} />
           <div class="service-content">
             <h3>Industrial Buildings</h3>
             <p>Warehouses, workshops, and commercial steel structures.</p>
@@ -111,7 +111,7 @@ import steelImg from '../assets/photos/George-gbrs/Steel-erection-&-cladding/Pro
         </a>
         
         <a href="/services#groundworks" class="service-card service-card-link">
-          <Image src={groundImg} alt="Groundworks and civil engineering" width={400} height={300} />
+          <img src={groundImg} alt="Groundworks and civil engineering" width={400} height={300} />
           <div class="service-content">
             <h3>Groundworks & Civils</h3>
             <p>Foundations, drainage, and civil engineering works.</p>
@@ -119,7 +119,7 @@ import steelImg from '../assets/photos/George-gbrs/Steel-erection-&-cladding/Pro
         </a>
         
         <a href="/services#steel" class="service-card service-card-link">
-          <Image src={steelImg} alt="Steel erection and cladding" width={400} height={300} />
+          <img src={steelImg} alt="Steel erection and cladding" width={400} height={300} />
           <div class="service-content">
             <h3>Steel Erection & Cladding</h3>
             <p>Expert steel frame erection and cladding services.</p>
