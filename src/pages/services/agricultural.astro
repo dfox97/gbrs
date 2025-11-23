@@ -1,15 +1,16 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 import ProjectCard from '../../components/ProjectCard.astro';
 import PageHero from '../../components/PageHero.astro';
 
-const dryerProject = await getEntry('projects', 'dryer-shed');
-const doubleSpanProject = await getEntry('projects', 'double-span');
+// Dynamically get all agricultural projects
+const allAgriculturalProjects = await getCollection('projects', ({ data }) => {
+  return data.category === 'agricultural';
+});
 
-if (!dryerProject || !doubleSpanProject) {
-  throw new Error('Required projects not found');
-}
+// Sort by order
+const sortedProjects = allAgriculturalProjects.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <Layout 
@@ -37,29 +38,25 @@ if (!dryerProject || !doubleSpanProject) {
       </p>
       
       <div class="projects-grid-enhanced">
-        <ProjectCard project={dryerProject}>
-           <ul class="project-highlights">
-              <li>Custom design & build</li>
-              <li>Agricultural specification</li>
-              <li>Complete installation</li>
-              <li>Turnkey solution</li>
-            </ul>
-        </ProjectCard>
+        {sortedProjects.map(project => (
+          <ProjectCard project={project} />
+        ))}
 
-        <ProjectCard project={doubleSpanProject}>
-             <ul class="project-highlights">
-              <li>Double span design</li>
-              <li>Large clear span</li>
-              <li>Durable construction</li>
-              <li>Efficient layout</li>
-            </ul>
-        </ProjectCard>
+        {sortedProjects.length === 0 && (
+          <div class="project-card" style="grid-column: 1 / -1; background: var(--light-grey); text-align: center; padding: 60px 20px;">
+            <h3 style="margin-bottom: 15px; color: #333;">Projects Coming Soon</h3>
+            <p style="margin-bottom: 25px; color: #666;">We're currently uploading our agricultural building projects. Check back soon or contact us to discuss your requirements.</p>
+            <a href="/#contact" class="btn-primary">Get a Free Quote</a>
+          </div>
+        )}
 
-        <div class="project-card" style="grid-column: 1 / -1; background: var(--light-grey); text-align: center; padding: 60px 20px;">
-          <h3 style="margin-bottom: 15px; color: #333;">More Projects Coming Soon</h3>
-          <p style="margin-bottom: 25px; color: #666;">We're currently updating our portfolio with 120+ completed projects. Check back soon or contact us to discuss your requirements.</p>
-          <a href="../../index.html#contact" class="btn-primary">Get a Free Quote</a>
-        </div>
+        {sortedProjects.length > 0 && (
+          <div class="project-card" style="grid-column: 1 / -1; background: var(--light-grey); text-align: center; padding: 60px 20px;">
+            <h3 style="margin-bottom: 15px; color: #333;">More Projects Coming Soon</h3>
+            <p style="margin-bottom: 25px; color: #666;">We're currently updating our portfolio with 120+ completed projects. Check back soon or contact us to discuss your requirements.</p>
+            <a href="/#contact" class="btn-primary">Get a Free Quote</a>
+          </div>
+        )}
       </div>
     </div>
   </section>

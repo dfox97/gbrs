@@ -1,10 +1,16 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 import ProjectCard from '../../components/ProjectCard.astro';
 import PageHero from '../../components/PageHero.astro';
 
-const groundworksProject = await getEntry('projects', 'groundworks-roadway');
+// Dynamically get all groundworks projects
+const allGroundworksProjects = await getCollection('projects', ({ data }) => {
+  return data.category === 'groundworks';
+});
+
+// Sort by order
+const sortedProjects = allGroundworksProjects.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <Layout 
@@ -31,20 +37,25 @@ const groundworksProject = await getEntry('projects', 'groundworks-roadway');
       </p>
       
       <div class="projects-grid-enhanced">
-        <ProjectCard project={groundworksProject}>
-            <ul class="project-highlights">
-              <li>Site clearance & leveling</li>
-              <li>Deep trenching</li>
-              <li>Drainage installation</li>
-              <li>Commercial scale</li>
-            </ul>
-        </ProjectCard>
+        {sortedProjects.map(project => (
+          <ProjectCard project={project} />
+        ))}
 
-        <div class="project-card" style="grid-column: 1 / -1; background: var(--light-grey); text-align: center; padding: 60px 20px;">
-          <h3 style="margin-bottom: 15px; color: #333;">More Projects Coming Soon</h3>
-          <p style="margin-bottom: 25px; color: #666;">We're currently updating our portfolio with 120+ completed projects. Check back soon or contact us to discuss your requirements.</p>
-          <a href="../../index.html#contact" class="btn-primary">Get a Free Quote</a>
-        </div>
+        {sortedProjects.length === 0 && (
+          <div class="project-card" style="grid-column: 1 / -1; background: var(--light-grey); text-align: center; padding: 60px 20px;">
+            <h3 style="margin-bottom: 15px; color: #333;">Projects Coming Soon</h3>
+            <p style="margin-bottom: 25px; color: #666;">We're currently uploading our groundworks projects. Check back soon or contact us to discuss your requirements.</p>
+            <a href="/#contact" class="btn-primary">Get a Free Quote</a>
+          </div>
+        )}
+
+        {sortedProjects.length > 0 && (
+          <div class="project-card" style="grid-column: 1 / -1; background: var(--light-grey); text-align: center; padding: 60px 20px;">
+            <h3 style="margin-bottom: 15px; color: #333;">More Projects Coming Soon</h3>
+            <p style="margin-bottom: 25px; color: #666;">We're currently updating our portfolio with 120+ completed projects. Check back soon or contact us to discuss your requirements.</p>
+            <a href="/#contact" class="btn-primary">Get a Free Quote</a>
+          </div>
+        )}
       </div>
     </div>
   </section>

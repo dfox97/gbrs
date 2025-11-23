@@ -4,16 +4,24 @@ backend:
 media_folder: "src/assets/projects"
 public_folder: "../../assets/projects"
 collections:
-  - name: "projects" # Used in routes, e.g., /admin/collections/blog
-    label: "Projects" # Used in the UI
-    folder: "src/content/projects" # The path to the folder where the documents are stored
-    create: true # Allow users to create new documents in this collection
-    fields: # The fields for each document, usually in frontmatter
-      - { label: "Title", name: "title", widget: "string" }
+  - name: "projects"
+    label: "Projects"
+    folder: "src/content/projects"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: title
+    fields:
+      - { 
+          label: "Project Title", 
+          name: "title", 
+          widget: "string",
+          hint: "e.g., 'Double Span Agricultural Building'"
+        }
       - {
-          label: "Category (Primary)",
+          label: "Primary Category",
           name: "category",
           widget: "select",
+          hint: "Main category for this project (used for filtering)",
           options:
             [
               { label: "Agricultural", value: "agricultural" },
@@ -24,11 +32,12 @@ collections:
             ],
         }
       - {
-          label: "Related Services",
+          label: "Related Services (Optional)",
           name: "services",
           widget: "select",
           multiple: true,
           required: false,
+          hint: "Select all services involved in this project",
           options:
             [
               { label: "Agricultural Buildings", value: "agricultural" },
@@ -37,18 +46,37 @@ collections:
               { label: "Steel Erection", value: "steel-erection" },
             ],
         }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: "Thumbnail", name: "thumbnail", widget: "image" }
+      - { 
+          label: "Project Description", 
+          name: "description", 
+          widget: "text",
+          hint: "Brief summary (1-2 sentences)"
+        }
+      - { 
+          label: "Thumbnail Image", 
+          name: "thumbnail", 
+          widget: "image",
+          hint: "Main image shown on project cards (recommended: 1200x800px)"
+        }
       - {
           label: "Gallery Images",
           name: "gallery",
           widget: "list",
+          required: false,
+          hint: "Add multiple images for the project gallery",
           field: { label: "Image", name: "image", widget: "image" },
         }
       - {
-          label: "Featured",
+          label: "Featured Project",
           name: "featured",
           widget: "boolean",
           default: false,
+          hint: "Show on homepage? (Select up to 4 featured projects total)"
         }
-      - { label: "Order", name: "order", widget: "number", default: 100 }
+      - { 
+          label: "Display Order", 
+          name: "order", 
+          widget: "number", 
+          default: 100,
+          hint: "Lower numbers appear first (e.g., 1, 2, 3). Use 100 for standard ordering."
+        }

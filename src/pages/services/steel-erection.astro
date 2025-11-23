@@ -1,10 +1,18 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
 import ProjectCard from '../../components/ProjectCard.astro';
 import PageHero from '../../components/PageHero.astro';
 
-const steelProject = await getEntry('projects', 'double-span');
+// Dynamically get all projects involving steel erection
+// For now, show agricultural and industrial projects (most involve steel)
+const allSteelProjects = await getCollection('projects', ({ data }) => {
+  return data.category === 'agricultural' || 
+         data.category === 'industrial';
+});
+
+// Sort by order
+const sortedProjects = allSteelProjects.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <Layout 
@@ -31,20 +39,25 @@ const steelProject = await getEntry('projects', 'double-span');
       </p>
       
       <div class="projects-grid-enhanced">
-        <ProjectCard project={steelProject}>
-             <ul class="project-highlights">
-              <li>Primary steel structure</li>
-              <li>Secondary steelwork</li>
-              <li>Safety compliant</li>
-              <li>Efficient installation</li>
-            </ul>
-        </ProjectCard>
+        {sortedProjects.map(project => (
+          <ProjectCard project={project} />
+        ))}
 
-        <div class="project-card" style="grid-column: 1 / -1; background: var(--light-grey); text-align: center; padding: 60px 20px;">
-          <h3 style="margin-bottom: 15px; color: #333;">More Projects Coming Soon</h3>
-          <p style="margin-bottom: 25px; color: #666;">We're currently updating our portfolio with 120+ completed projects. Check back soon or contact us to discuss your requirements.</p>
-          <a href="../../index.html#contact" class="btn-primary">Get a Free Quote</a>
-        </div>
+        {sortedProjects.length === 0 && (
+          <div class="project-card" style="grid-column: 1 / -1; background: var(--light-grey); text-align: center; padding: 60px 20px;">
+            <h3 style="margin-bottom: 15px; color: #333;">Projects Coming Soon</h3>
+            <p style="margin-bottom: 25px; color: #666;">We're currently uploading our steel erection projects. Check back soon or contact us to discuss your requirements.</p>
+            <a href="/#contact" class="btn-primary">Get a Free Quote</a>
+          </div>
+        )}
+
+        {sortedProjects.length > 0 && (
+          <div class="project-card" style="grid-column: 1 / -1; background: var(--light-grey); text-align: center; padding: 60px 20px;">
+            <h3 style="margin-bottom: 15px; color: #333;">More Projects Coming Soon</h3>
+            <p style="margin-bottom: 25px; color: #666;">We're currently updating our portfolio with 120+ completed projects. Check back soon or contact us to discuss your requirements.</p>
+            <a href="/#contact" class="btn-primary">Get a Free Quote</a>
+          </div>
+        )}
       </div>
     </div>
   </section>
