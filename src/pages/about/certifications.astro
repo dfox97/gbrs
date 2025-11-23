@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import ContactButton from '../../components/buttons/ContactButton.astro';
+import PageHero from '../../components/PageHero.astro';
 ---
 
 <Layout 
@@ -8,12 +9,10 @@ import ContactButton from '../../components/buttons/ContactButton.astro';
   description="About GBRS Services - Family-run construction business in Hartlepool. Meet our team and learn about 40+ years experience in agricultural and industrial building."
   activePage="about"
 >
-  <section class="page-hero" id="main">
-    <div class="hero-overlay">
-      <h1>Certifications & Accreditations</h1>
-      <p class="hero-subtitle">Committed to Excellence and Safety</p>
-    </div>
-  </section>
+  <PageHero 
+    title="Certifications & Accreditations"
+    subtitle="Committed to Excellence and Safety"
+  />
 
   <section class="about section">
     <div class="container">
