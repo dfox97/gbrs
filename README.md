@@ -1,3 +1,8 @@
+# *Work in progress*
+Gradually rebuilding https://gbrs.uk webstie using Astro. Originally built in vanilla html/css/js but found limitations maintaining changes for the Client.
+Hosted on Netlify and uses Decap-CMS to manage content updates to the site.
+
+---------------
 # Astro Starter Kit: Basics
 
 ```sh
