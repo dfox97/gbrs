@@ -4,6 +4,9 @@ import ContactForm from '../components/ContactForm.astro';
 import HeroOverlay from '../components/HeroOverlay.astro';
 import FeaturedProjects from '../components/FeaturedProjects.astro';
 import { Image } from 'astro:assets';
+import SectionHeader from '../components/ui/SectionHeader.astro';
+import FeatureItem from '../components/ui/FeatureItem.astro';
+import ServiceCard from '../components/ui/ServiceCard.astro';
 
 
 // Service Card Images
@@ -24,11 +27,26 @@ import steelImg from '../assets/projects/steel-erection/Project-2-steel_erection
 
   <!-- ABOUT PREVIEW -->
   <section id="about" class="about section">
-    <div class="container">
-      <div class="about-content">
-        <div class="section-header">
-          <span class="section-tag">Since 2022</span>
-          <h2>Who We Are</h2>
+  <div class="container">
+    <div class="about-content">
+      <SectionHeader tag="Since 2022" title="Who We Are" />
+      <p class="lead-text"><strong>GBRS Services Ltd</strong> is a trusted, family-run construction business proudly serving <strong>Hartlepool, County Durham, and the wider North East</strong>.</p>
+      <p>With over <strong>40 years of combined hands-on experience</strong>, we handle every stage of your construction project — from initial <em>groundworks to final finishes</em>.</p>
+      <p>We specialise in <strong>agricultural and industrial steel buildings</strong>, offering comprehensive services including foundations, steel erection, sheeting, cladding, and civil engineering works.</p>
+      <div class="about-features">
+        <FeatureItem icon="✓" title="40+ Years Experience" text="Proven expertise in agricultural & industrial construction" />
+        <FeatureItem icon="✓" title="Family-Run Business" text="Personal service with dedicated project attention" />
+        <FeatureItem icon="✓" title="Complete In-House" text="All work completed by our experienced, in-house team" />
+        <FeatureItem icon="✓" title="Local to North East" text="Based in Hartlepool, serving County Durham & surrounding areas" />
+      </div>
+      <div style="text-align: center; margin-top: 40px;"><a href="/about" class="btn-primary">Learn More About Our Team</a></div>
+    </div>
+  </div>
+</section>
+  <div class="container">
+
+<SectionHeader tag="Since 2022" title="Who We Are" />
+
         </div>
         <p class="lead-text">
           <strong>GBRS Services Ltd</strong> is a trusted, family-run construction business proudly serving 
@@ -43,35 +61,11 @@ import steelImg from '../assets/projects/steel-erection/Project-2-steel_erection
           services including foundations, steel erection, sheeting, cladding, and civil engineering works.
         </p>
         
-        <div class="about-features">
-          <div class="feature-item">
-            <span class="feature-icon">✓</span>
-            <div>
-              <h3>40+ Years Experience</h3>
-              <p>Proven expertise in agricultural & industrial construction</p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <span class="feature-icon">✓</span>
-            <div>
-              <h3>Family-Run Business</h3>
-              <p>Personal service and attention to every project</p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <span class="feature-icon">✓</span>
-            <div>
-              <h3>Complete In-House</h3>
-              <p>All work done by our skilled team, no subcontractors</p>
-            </div>
-          </div>
-          <div class="feature-item">
-            <span class="feature-icon">✓</span>
-            <div>
-              <h3>Local to North East</h3>
-              <p>Based in Hartlepool, serving County Durham & beyond</p>
-            </div>
-          </div>
+<div class="about-features">
+  <FeatureItem icon="✓" title="40+ Years Experience" text="Proven expertise in agricultural & industrial construction" />
+  <FeatureItem icon="✓" title="Family-Run Business" text="Personal service with dedicated project attention" />
+  <FeatureItem icon="✓" title="Complete In-House" text="All work completed by our experienced, in-house team" />
+  <FeatureItem icon="✓" title="Local to North East" text="Based in Hartlepool, serving County Durham & surrounding areas" />
         </div>
         
         <div style="text-align: center; margin-top: 40px;">

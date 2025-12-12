@@ -33,3 +33,40 @@ const bgStyle = `background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55))
     </div>
   </div>
 </section>
+
+<style>
+  .hero {
+    background-color: #333;
+    min-height: 75vh;
+    position: relative;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  @media (min-width: 768px) {
+    .hero { min-height: 90vh; }
+  }
+  .hero-overlay {
+    width: 100%; height: 100%; display:flex; flex-direction:column;
+    justify-content:center; align-items:center; text-align:center;
+    padding:40px 20px;
+  }
+  .hero-overlay h1 {
+    font-size:2rem; font-weight:700; margin-bottom:15px;
+    text-shadow:2px 2px 4px rgba(0,0,0,0.5);
+  }
+  .hero-overlay p {
+    font-size:1.1rem; margin-bottom:30px; max-width:600px;
+    text-shadow:1px 1px 2px rgba(0,0,0,0.5);
+  }
+  @media (min-width:768px){
+    .hero-overlay h1{font-size:3.5rem;} .hero-overlay p{font-size:1.35rem;}
+  }
+  .hero-cta-group{display:flex; flex-direction:column; gap:15px; margin:30px 0; align-items:center;}
+  @media(min-width:640px){.hero-cta-group{flex-direction:row; justify-content:center;}}
+  .hero-stats{display:flex; gap:30px; margin-top:40px; flex-wrap:wrap; justify-content:center;}
+  .stat-item{display:flex; flex-direction:column; align-items:center; padding:15px; background:rgba(255,255,255,0.1); backdrop-filter:blur(10px); border-radius:8px; min-width:120px;}
+  .stat-item strong{font-size:2rem; color:var(--primary); font-weight:800; margin-bottom:5px;}
+  .stat-item span{font-size:0.9rem; opacity:0.9;}
+</style>

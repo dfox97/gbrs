@@ -1,0 +1,17 @@
+---
+interface Props {
+  title: string;
+  text: string;
+}
+const { title, text } = Astro.props;
+---
+<div class="value-card">
+  <h3>{title}</h3>
+  <p>{text}</p>
+</div>
+<style>
+.value-card{background:white;padding:25px 20px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,0.08);transition:.3s;} 
+.value-card:hover{transform:translateY(-5px);box-shadow:0 8px 20px rgba(0,0,0,0.12);} 
+.value-card h3{color:var(--primary);font-size:1.15rem;margin-bottom:12px;text-align:left;} 
+.value-card p{color:#555;line-height:1.7;margin:0;font-size:.9rem;text-align:left;} 
+</style>

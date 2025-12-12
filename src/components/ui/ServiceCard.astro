@@ -1,0 +1,25 @@
+---
+import { Image } from 'astro:assets';
+interface Props {
+  href: string;
+  img: any;
+  title: string;
+  text: string;
+}
+const { href, img, title, text } = Astro.props;
+---
+<a href={href} class="service-card">
+  <Image src={img} alt={title} width={400} height={300} />
+  <div class="service-content">
+    <h3>{title}</h3>
+    <p>{text}</p>
+  </div>
+</a>
+<style>
+.service-card{display:block;background:white;border-radius:12px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.08);transition:.3s;} 
+.service-card:hover{transform:translateY(-6px);box-shadow:0 8px 24px rgba(0,0,0,0.15);} 
+.service-card img{width:100%;height:220px;object-fit:cover;} 
+.service-content{padding:20px;} 
+.service-card h3{color:var(--primary);font-size:1.15rem;margin-bottom:10px;} 
+.service-card p{color:#666;font-size:.95rem;margin:0;} 
+</style>

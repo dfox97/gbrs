@@ -15,3 +15,33 @@
   <a href="/projects">Projects</a>
   <a href="/#contact">Contact</a>
 </nav>
+
+<style>
+.nav{display:none;flex-direction:column;position:absolute;top:65px;right:20px;background:white;box-shadow:0 4px 10px rgba(0,0,0,0.15);border-radius:8px;padding:8px 0;min-width:240px;z-index:1000;}
+.nav.show{display:flex;}
+.nav a{padding:14px 20px;display:flex;align-items:center;color:#555;text-decoration:none;transition:background .2s;}
+.nav a:hover{background:var(--light-grey);color:var(--primary);} 
+.nav-item{position:relative;} 
+.nav-dropdown{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);background:white;box-shadow:0 8px 16px rgba(0,0,0,0.15);border-radius:8px;padding:8px 0;min-width:200px;z-index:2000;} 
+.nav-item:hover .nav-dropdown{display:block;} 
+@media(min-width:1024px){.nav{display:flex!important;flex-direction:row;position:static;box-shadow:none;padding:0;}.nav a{padding:8px 0;}} 
+.nav-toggle{background:none;border:2px solid var(--primary);border-radius:4px;padding:8px 12px;color:var(--primary);} 
+.hamburger{width:24px;height:2px;background:var(--primary);position:relative;} 
+.hamburger::before,.hamburger::after{content:'';position:absolute;width:24px;height:2px;background:var(--primary);left:0;} 
+.hamburger::before{top:-8px;} .hamburger::after{top:8px;} 
+</style>
+
+<style>
+.nav a{color:#555;text-decoration:none;margin-left:20px;font-weight:500;transition:color .3s;padding:8px 0;display:inline-block;} 
+.nav a:hover{color:var(--primary);} 
+.nav-item{position:relative;display:inline-block;} 
+.nav-dropdown{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);background:white;box-shadow:0 8px 16px rgba(0,0,0,0.15);border-radius:8px;padding:8px 0;min-width:220px;z-index:1000;margin-top:12px;opacity:0;pointer-events:none;transition:opacity .2s,margin-top .2s;} 
+.nav-item:hover .nav-dropdown{display:block;opacity:1;pointer-events:auto;margin-top:8px;} 
+.nav-toggle{background:none;border:2px solid var(--primary);border-radius:4px;cursor:pointer;display:block;color:var(--primary);padding:8px 12px;min-width:48px;min-height:48px;} 
+.hamburger{display:block;width:24px;height:2px;background:var(--primary);position:relative;} 
+.hamburger::before,.hamburger::after{content:'';position:absolute;width:24px;height:2px;background:var(--primary);left:50%;transform:translateX(-50%);} 
+.hamburger::before{top:-8px;} .hamburger::after{top:8px;} 
+.nav{display:none;flex-direction:column;position:absolute;top:65px;right:20px;background:white;box-shadow:0 4px 10px rgba(0,0,0,.15);border-radius:8px;padding:8px 0;min-width:240px;} 
+.nav.show{display:flex;} 
+@media(min-width:1024px){.nav{display:flex!important;flex-direction:row;position:static;box-shadow:none;padding:0;}} 
+</style>

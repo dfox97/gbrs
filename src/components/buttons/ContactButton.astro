@@ -8,4 +8,13 @@ let { btnText = 'Get a Free Quote' } = Astro.props;
   Call: 07555 804062
 </a>
 
+<style>
+.btn-primary{background:var(--primary);color:#fff;padding:14px 32px;border:none;border-radius:6px;font-weight:600;font-size:1rem;text-decoration:none;transition:all 0.3s ease;cursor:pointer;display:inline-block;min-height:48px;min-width:140px;text-align:center;box-shadow:0 4px 12px rgba(243,111,33,0.2);} 
+.btn-primary:hover{background:var(--primary-dark);transform:translateY(-2px);box-shadow:0 6px 16px rgba(243,111,33,0.35);} 
+.btn-secondary{background:white;color:var(--primary);padding:14px 32px;border:2px solid white;border-radius:6px;font-weight:600;font-size:1rem;text-decoration:none;transition:all 0.3s ease;cursor:pointer;display:inline-block;min-height:48px;min-width:140px;text-align:center;} 
+.btn-secondary:hover{background:transparent;color:white;transform:translateY(-2px);} 
+.btn-call{display:flex;align-items:center;gap:10px;} 
+.btn-call svg{fill:white;} 
+</style>
+
 <a href="/#contact" class="btn-secondary">{btnText}</a>

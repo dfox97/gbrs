@@ -6,21 +6,21 @@
 @import url('utilities/helpers.css');
 
 @import url('layout/containers.css');
-@import url('layout/header.css');
-@import url('layout/navigation.css');
-@import url('layout/footer.css');
+/* header.css removed after migration to component-scoped CSS */
+/* navigation.css removed after migration to Nav.astro */
+/* footer.css removed after migration to Footer.astro */
 
 @import url('components/buttons.css');
-@import url('components/forms.css');
-@import url('components/cards.css');
+/* forms.css removed after migration to ContactForm.astro */
+/* cards.css removed after migration to UI components */
 @import url('components/modals.css');
 @import url('components/floating-actions.css');
 @import url('components/badges.css');
 
-@import url('sections/hero.css');
+/* hero.css removed after HeroOverlay + PageHero refactor */
 @import url('sections/about.css');
 @import url('sections/services.css');
-@import url('sections/projects.css');
+/* projects.css removed after FeaturedProjects refactor */
 @import url('sections/contact.css');
 @import url('sections/team.css');
 @import url('sections/certifications.css');

@@ -1,0 +1,22 @@
+---
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+---
+<div class="cert-card">
+  <div class="cert-icon"></div>
+  <div class="cert-content">
+    <h3>{title}</h3>
+    <p>{description}</p>
+  </div>
+</div>
+<style>
+.cert-card{background:white;border-radius:12px;padding:25px 20px;box-shadow:0 4px 16px rgba(0,0,0,0.08);display:flex;flex-direction:column;gap:16px;} 
+@media(min-width:640px){.cert-card{flex-direction:row;align-items:flex-start;gap:20px;padding:30px;}} 
+.cert-icon{width:70px;height:70px;background:var(--light-grey);border-radius:50%;} 
+.cert-content{flex:1;display:flex;flex-direction:column;gap:10px;} 
+.cert-content h3{color:var(--primary);font-size:1.2rem;margin:0;} 
+.cert-content p{font-size:.95rem;color:#555;margin:0;line-height:1.6;} 
+</style>
