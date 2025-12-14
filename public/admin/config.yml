@@ -1,6 +1,7 @@
 backend:
   name: git-gateway
   branch: main
+# local_backend: true
 media_folder: "src/assets/projects"
 public_folder: "../../assets/projects"
 collections:
@@ -13,11 +14,11 @@ collections:
     slug: "{{slug}}"
     identifier_field: title
     fields:
-      - { 
-          label: "Project Title", 
-          name: "title", 
+      - {
+          label: "Project Title",
+          name: "title",
           widget: "string",
-          hint: "e.g., 'Double Span Agricultural Building'"
+          hint: "e.g., 'Double Span Agricultural Building'",
         }
       - {
           label: "Primary Category",
@@ -48,17 +49,17 @@ collections:
               { label: "Steel Erection", value: "steel-erection" },
             ],
         }
-      - { 
-          label: "Project Description", 
-          name: "description", 
+      - {
+          label: "Project Description",
+          name: "description",
           widget: "text",
-          hint: "Brief summary (1-2 sentences)"
+          hint: "Brief summary (1-2 sentences)",
         }
-      - { 
-          label: "Thumbnail Image", 
-          name: "thumbnail", 
+      - {
+          label: "Thumbnail Image",
+          name: "thumbnail",
           widget: "image",
-          hint: "Main image shown on project cards (recommended: 1200x800px)"
+          hint: "Main image shown on project cards (recommended: 1200x800px)",
         }
       - {
           label: "Gallery Images",
@@ -73,12 +74,12 @@ collections:
           name: "featured",
           widget: "boolean",
           default: false,
-          hint: "Show on homepage? (Select up to 4 featured projects total)"
+          hint: "Show on homepage? (Select up to 4 featured projects total)",
         }
-      - { 
-          label: "Display Order", 
-          name: "order", 
-          widget: "number", 
+      - {
+          label: "Display Order",
+          name: "order",
+          widget: "number",
           default: 100,
-          hint: "Lower numbers appear first (e.g., 1, 2, 3). Use 100 for standard ordering."
+          hint: "Lower numbers appear first (e.g., 1, 2, 3). Use 100 for standard ordering.",
         }
