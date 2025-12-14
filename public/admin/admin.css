@@ -1,1 +1,45 @@
-img { max-width: 100%; height: auto; display:block; }
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+/* Login screen styling */
+[data-slate-editor] {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+/* Main CMS interface */
+.nc-app-container {
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+/* Preview pane styling for projects */
+.preview-pane {
+    background-color: white;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.preview-pane h1 {
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.preview-pane img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.preview-pane .text {
+    color: #555;
+    line-height: 1.6;
+}
