@@ -7,7 +7,7 @@ services:
   - groundworks
 description: >-
   A local Agricultral building project for a vauled customer, which seen use
-  erect a second hand Twin span building, with 15m span beams. 
+  erect a 75m x 56.8m second hand Twin span building, including 15m span beams. 
 
 
   This building was over an Acre in size! 
