@@ -4,6 +4,7 @@ category: recladding
 services:
   - industrial
   - agricultural
+  - steel-erection
 description: We delivered a multi‑site agricultural roofing programme covering
   storage and hay barns. The result is improved weatherproofing and durability
   with a clean, uniform finish across sites.
