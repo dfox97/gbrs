@@ -81,6 +81,39 @@ const structuredDataJson = {
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <style>
+    @font-face {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 500;
+      font-display: swap;
+      src: url("/fonts/web/Inter-Medium.woff2") format("woff2");
+    }
+
+    @font-face {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 600;
+      font-display: swap;
+      src: url("/fonts/web/Inter-SemiBold.woff2") format("woff2");
+    }
+
+    @font-face {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: url("/fonts/web/Inter-Bold.woff2") format("woff2");
+    }
+
+    @font-face {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 800;
+      font-display: swap;
+      src: url("/fonts/web/Inter-ExtraBold.woff2") format("woff2");
+    }
+  </style>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content={description} />
   <meta name="keywords" content="GBRS Services, construction Hartlepool, agricultural buildings North East, industrial buildings County Durham, groundworks Hartlepool, steel erection, cladding, UK construction, civils Hartlepool, reclad services" />
@@ -99,18 +132,11 @@ const structuredDataJson = {
   <link rel="icon" type="image/jpeg" href="/gbrs_ltd_logo.jpg">
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!--
-    Load only the weights we actually use (500/600/700/800), and avoid
-    render-blocking by preloading then applying the stylesheet on load.
-  -->
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" media="print" onload="this.media='all'" />
-  <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" />
-  </noscript>
+  <!-- Fonts (self-hosted Inter) -->
+  <link rel="preload" href="/fonts/web/Inter-Medium.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/web/Inter-SemiBold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/web/Inter-Bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/fonts/web/Inter-ExtraBold.woff2" as="font" type="font/woff2" crossorigin />
 
   {structuredData && (
     <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredDataJson)} />
