@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ProjectModal from '../components/ProjectModal.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import ContactButton from '../components/buttons/ContactButton.astro';
 import PageHero from '../components/PageHero.astro';
@@ -68,7 +67,6 @@ const sortedProjects = projectsRaw.sort((a, b) => a.data.order - b.data.order);
     </div>
   </section>
 
-  <ProjectModal />
 
   <script is:inline>
     // Pagination and Filtering Logic

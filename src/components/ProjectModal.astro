@@ -2,162 +2,263 @@
 // Project Gallery Modal Component
 ---
 
-<div id="projectModal" class="project-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+<div id="projectLightbox" class="project-modal" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle" aria-hidden="true">
   <div class="modal-content">
-    <button class="modal-close" aria-label="Close gallery">&times;</button>
-    <h3 id="modalTitle" class="modal-title"></h3>
-    <div class="modal-gallery">
-      <!-- Images will be injected here by JS -->
-    </div>
-    <div class="modal-nav">
-      <button class="modal-prev" aria-label="Previous image">←</button>
-      <span class="modal-counter"></span>
-      <button class="modal-next" aria-label="Next image">→</button>
+    <button class="modal-close" type="button" aria-label="Close gallery">&times;</button>
+    <h3 id="lightboxTitle" class="modal-title"></h3>
+
+    <div class="modal-gallery" aria-live="polite">
+      <div class="modal-track" style="transform: translate3d(0, 0, 0);">
+        <!-- Slides injected by JS -->
+      </div>
+
+      <button class="modal-prev" type="button" aria-label="Previous image">
+        <span aria-hidden="true">‹</span>
+      </button>
+      <button class="modal-next" type="button" aria-label="Next image">
+        <span aria-hidden="true">›</span>
+      </button>
+
+      <div class="modal-ui" aria-hidden="true">
+        <span class="modal-counter"></span>
+      </div>
     </div>
   </div>
 </div>
 
-<script>
-  // Modal Logic
-  const modal = document.getElementById('projectModal');
-  const modalTitle = document.getElementById('modalTitle');
-  const modalGallery = document.querySelector('.modal-gallery');
-  const modalCounter = document.querySelector('.modal-counter');
-  const modalClose = document.querySelector('.modal-close');
-  const modalPrev = document.querySelector('.modal-prev');
-  const modalNext = document.querySelector('.modal-next');
+<script is:inline>
+  const modal = document.getElementById('projectLightbox');
+  const modalTitle = document.getElementById('lightboxTitle');
+  const modalTrack = document.querySelector('#projectLightbox .modal-track');
+  const modalCounter = document.querySelector('#projectLightbox .modal-counter');
+  const modalClose = document.querySelector('#projectLightbox .modal-close');
+  const modalPrev = document.querySelector('#projectLightbox .modal-prev');
+  const modalNext = document.querySelector('#projectLightbox .modal-next');
 
-  let currentProject = null;
+  let currentProjectTitle = '';
+  let images = [];
   let currentImageIndex = 0;
+  let lastFocusedEl = null;
 
-  // Open modal when gallery button clicked
-  // We delegate the event listener to document to handle dynamically added buttons if any
+  function isOpen() {
+    return !!(modal && modal.classList.contains('active'));
+  }
+
+  function clampIndex(index) {
+    if (!images.length) return 0;
+    return Math.max(0, Math.min(index, images.length - 1));
+  }
+
+  function setButtonsDisabled() {
+    if (modalPrev instanceof HTMLButtonElement) modalPrev.disabled = currentImageIndex <= 0;
+    if (modalNext instanceof HTMLButtonElement) modalNext.disabled = currentImageIndex >= images.length - 1;
+  }
+
+  function updateCounter() {
+    if (modalCounter) {
+      modalCounter.textContent = images.length ? `${currentImageIndex + 1} / ${images.length}` : '';
+    }
+  }
+
+  function updateTitle() {
+    if (modalTitle) modalTitle.textContent = currentProjectTitle || '';
+  }
+
+  function updateTrackTransform({ animate = true } = {}) {
+    if (!(modalTrack instanceof HTMLElement)) return;
+
+    if (!animate) modalTrack.classList.add('no-anim');
+
+    const translatePct = currentImageIndex * -100;
+    modalTrack.style.transform = `translate3d(${translatePct}%, 0, 0)`;
+
+    if (!animate) {
+      void modalTrack.offsetHeight;
+      modalTrack.classList.remove('no-anim');
+    }
+  }
+
+  function buildSlides() {
+    if (!(modalTrack instanceof HTMLElement)) return;
+    modalTrack.innerHTML = '';
+
+    const fragment = document.createDocumentFragment();
+    images.forEach((src, index) => {
+      const slide = document.createElement('div');
+      slide.className = 'modal-slide';
+
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = currentProjectTitle ? `${currentProjectTitle} - view ${index + 1}` : `Gallery image ${index + 1}`;
+      img.loading = 'eager';
+      img.decoding = 'async';
+
+      slide.appendChild(img);
+      fragment.appendChild(slide);
+    });
+
+    modalTrack.appendChild(fragment);
+  }
+
+  function preloadNeighbors() {
+    const next = currentImageIndex + 1;
+    const prev = currentImageIndex - 1;
+    if (images[next]) new Image().src = images[next];
+    if (images[prev]) new Image().src = images[prev];
+  }
+
+  function render({ animate = true } = {}) {
+    updateTitle();
+    updateCounter();
+    setButtonsDisabled();
+    updateTrackTransform({ animate });
+    preloadNeighbors();
+  }
+
+  function openLightbox({ title = '', imgs = [], startIndex = 0 } = {}) {
+    if (!modal) return;
+
+    lastFocusedEl = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+
+    currentProjectTitle = title || '';
+    images = Array.isArray(imgs) ? imgs.filter(Boolean) : [];
+    currentImageIndex = clampIndex(Number(startIndex) || 0);
+
+    buildSlides();
+
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+
+    render({ animate: false });
+
+    if (modalClose instanceof HTMLElement) modalClose.focus();
+  }
+
+  function closeLightbox() {
+    if (!modal) return;
+
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+
+    currentProjectTitle = '';
+    images = [];
+    currentImageIndex = 0;
+
+    if (modalTrack instanceof HTMLElement) modalTrack.innerHTML = '';
+
+    if (lastFocusedEl instanceof HTMLElement) lastFocusedEl.focus();
+    lastFocusedEl = null;
+  }
+
+  function goTo(index) {
+    currentImageIndex = clampIndex(index);
+    render({ animate: true });
+  }
+
+  function goPrev() {
+    if (currentImageIndex > 0) goTo(currentImageIndex - 1);
+  }
+
+  function goNext() {
+    if (currentImageIndex < images.length - 1) goTo(currentImageIndex + 1);
+  }
+
+  // Open modal when gallery button clicked (event delegation)
   document.addEventListener('click', (e) => {
-    const btn = e.target.closest('.view-gallery-btn');
-    if (btn) {
-      e.preventDefault();
-      const title = btn.dataset.title;
-      const galleryData = btn.dataset.gallery;
-      
-      if (title && galleryData) {
-        try {
-          const images = JSON.parse(galleryData);
-          openGallery(title, images);
-        } catch (err) {
-          console.error('Error parsing gallery data', err);
-        }
-      }
+    const target = e.target;
+    if (!(target instanceof Element)) return;
+
+    const btn = target.closest('[data-lightbox-open]');
+    if (!(btn instanceof HTMLElement)) return;
+
+    e.preventDefault();
+
+    const title = btn.getAttribute('data-title') || '';
+    const imagesData = btn.getAttribute('data-images');
+    const startIndex = btn.getAttribute('data-start-index') || 0;
+
+    if (!imagesData) return;
+
+    try {
+      const imgs = JSON.parse(imagesData);
+      openLightbox({ title, imgs, startIndex });
+    } catch (err) {
+      console.error('Error parsing gallery data', err);
     }
   });
 
-  function openGallery(title, images) {
-    currentProject = { title, images };
-    currentImageIndex = 0;
-    
-    if (modalTitle) modalTitle.textContent = currentProject.title;
-    if (modal) modal.classList.add('active');
-    document.body.style.overflow = 'hidden'; // Prevent background scroll
-    
-    if (modalGallery) modalGallery.style.opacity = '0';
-
-    setTimeout(() => {
-      updateGalleryImage();
-    }, 50);
-  }
-
-  function updateGalleryImage() {
-    if (!currentProject || !modalGallery) return;
-
-    const images = currentProject.images;
-    const currentImageSrc = images[currentImageIndex];
-
-    const img = new Image();
-    img.src = currentImageSrc;
-    img.alt = `${currentProject.title} - view ${currentImageIndex + 1}`;
-    img.style.maxWidth = '100%';
-    img.style.maxHeight = '70vh';
-    img.style.objectFit = 'contain';
-    img.style.display = 'block';
-
-    modalGallery.style.opacity = '0';
-
-    img.onload = () => {
-      modalGallery.innerHTML = '';
-      modalGallery.appendChild(img);
-      modalGallery.style.opacity = '1';
-    };
-
-    img.onerror = () => {
-      modalGallery.innerHTML = '<p style="color:white; text-align:center;">Error loading image</p>';
-      modalGallery.style.opacity = '1';
-    };
-
-    if (modalCounter) modalCounter.textContent = `${currentImageIndex + 1} / ${images.length}`;
-
-    if (modalPrev) modalPrev.disabled = currentImageIndex === 0;
-    if (modalNext) modalNext.disabled = currentImageIndex === images.length - 1;
-
-    // Preload next/prev
-    if (currentImageIndex + 1 < images.length) {
-      new Image().src = images[currentImageIndex + 1];
-    }
-    if (currentImageIndex - 1 >= 0) {
-      new Image().src = images[currentImageIndex - 1];
-    }
-  }
-
-  function closeGallery() {
-    if (modal) modal.classList.remove('active');
-    document.body.style.overflow = '';
-    currentProject = null;
-    currentImageIndex = 0;
-    if (modalGallery) {
-      modalGallery.style.opacity = '';
-      modalGallery.innerHTML = '';
-    }
-  }
-
-  if (modalClose) modalClose.addEventListener('click', closeGallery);
-
-  if (modalPrev) {
-    modalPrev.addEventListener('click', () => {
-      if (currentImageIndex > 0) {
-        currentImageIndex--;
-        updateGalleryImage();
-      }
-    });
-  }
-
-  if (modalNext) {
-    modalNext.addEventListener('click', () => {
-      if (currentProject && currentImageIndex < currentProject.images.length - 1) {
-        currentImageIndex++;
-        updateGalleryImage();
-      }
-    });
-  }
+  if (modalClose) modalClose.addEventListener('click', closeLightbox);
+  if (modalPrev) modalPrev.addEventListener('click', goPrev);
+  if (modalNext) modalNext.addEventListener('click', goNext);
 
   if (modal) {
     modal.addEventListener('click', (e) => {
-      if (e.target === modal) closeGallery();
+      if (e.target === modal) closeLightbox();
     });
   }
 
   document.addEventListener('keydown', (e) => {
-    if (!modal || !modal.classList.contains('active')) return;
+    if (!isOpen()) return;
 
     if (e.key === 'Escape') {
-      closeGallery();
+      closeLightbox();
     } else if (e.key === 'ArrowLeft') {
-      if (modalPrev && !modalPrev.disabled) {
-        currentImageIndex--;
-        updateGalleryImage();
-      }
+      goPrev();
     } else if (e.key === 'ArrowRight') {
-      if (modalNext && !modalNext.disabled) {
-        currentImageIndex++;
-        updateGalleryImage();
-      }
+      goNext();
     }
   });
+
+  // Touch swipe support
+  (function attachSwipe() {
+    if (!modal) return;
+
+    const gallery = document.querySelector('#projectLightbox .modal-gallery');
+    if (!(gallery instanceof HTMLElement)) return;
+
+    let startX = 0;
+    let startY = 0;
+    let dragging = false;
+
+    gallery.addEventListener(
+      'touchstart',
+      (e) => {
+        if (!isOpen()) return;
+        const touch = e.touches && e.touches[0];
+        if (!touch) return;
+
+        startX = touch.clientX;
+        startY = touch.clientY;
+        dragging = true;
+      },
+      { passive: true }
+    );
+
+    gallery.addEventListener(
+      'touchend',
+      (e) => {
+        if (!isOpen() || !dragging) return;
+
+        dragging = false;
+        const touch = e.changedTouches && e.changedTouches[0];
+        if (!touch) return;
+
+        const dx = touch.clientX - startX;
+        const dy = touch.clientY - startY;
+
+        // Ignore vertical scroll gestures
+        if (Math.abs(dy) > Math.abs(dx)) return;
+
+        const threshold = 40;
+        if (dx > threshold) {
+          goPrev();
+        } else if (dx < -threshold) {
+          goNext();
+        }
+      },
+      { passive: true }
+    );
+  })();
 </script>
