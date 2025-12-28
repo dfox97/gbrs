@@ -102,7 +102,15 @@ const structuredDataJson = {
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!--
+    Load only the weights we actually use (500/600/700/800), and avoid
+    render-blocking by preloading then applying the stylesheet on load.
+  -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" media="print" onload="this.media='all'" />
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" />
+  </noscript>
 
   {structuredData && (
     <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredDataJson)} />

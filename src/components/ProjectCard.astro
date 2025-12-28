@@ -40,8 +40,10 @@ const categoryLabel = PROJECT_CATEGORIES[project.data.category as keyof typeof P
     {gallerySrcs && gallerySrcs.length > 0 && (
       <button 
         class="view-gallery-btn" 
+        data-lightbox-open
         data-title={project.data.title}
-        data-gallery={JSON.stringify(gallerySrcs)}
+        data-images={JSON.stringify(gallerySrcs)}
+        data-start-index="0"
       >
         View Gallery ({gallerySrcs.length} photos) →
       </button>
