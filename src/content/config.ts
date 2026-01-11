@@ -15,6 +15,18 @@ const projectsCollection = defineCollection({
   }),
 });
 
+const certificationsCollection = defineCollection({
+  type: 'data',
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    details: z.string(),
+    link: z.string().url(),
+    order: z.number().default(100),
+  }),
+});
+
 export const collections = {
   'projects': projectsCollection,
+  'certifications': certificationsCollection,
 };

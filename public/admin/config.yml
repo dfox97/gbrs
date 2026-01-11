@@ -85,3 +85,22 @@ collections:
           default: 100,
           hint: "Lower numbers appear first (e.g., 1, 2, 3). Use 100 for standard ordering.",
         }
+
+  - name: "certifications"
+    label: "Certifications"
+    folder: "src/content/certifications"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: title
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Short Description", name: "description", widget: "text" }
+      - { label: "Detailed Information", name: "details", widget: "text" }
+      - { label: "Website Link", name: "link", widget: "string" }
+      - {
+          label: "Display Order",
+          name: "order",
+          widget: "number",
+          default: 100,
+          hint: "Lower numbers appear first",
+        }
