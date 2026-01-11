@@ -2,6 +2,47 @@
 import Layout from '../../layouts/Layout.astro';
 import ContactButton from '../../components/buttons/ContactButton.astro';
 import PageHero from '../../components/PageHero.astro';
+
+const certifications = [
+  {
+    title: "RIDBA - Road and Infrastructure Development Body of Association",
+    description: "RIDBA represents the interests of companies involved in road and infrastructure development, promoting best practices and high standards.",
+    details: "As a member of RIDBA, GBRS Services Ltd adheres to their code of practice, ensuring quality and professionalism in all our infrastructure projects.",
+    link: "https://www.ridba.org.uk/"
+  },
+  {
+    title: "SWQR - Street Works Qualification Register",
+    description: "The SWQR qualification certifies that our operatives and supervisors are fully trained and competent to carry out work on public highways in accordance with the New Roads and Street Works Act 1991 (NRSWA).",
+    details: "This certification means our team is legally qualified to install, maintain, and repair utilities or infrastructure in streets while ensuring public safety, compliance with regulations, and minimal disruption to traffic and pedestrians.",
+    link: "https://www.swqr.org.uk/SWQR/Home"
+  },
+  {
+    title: "CSCS - Construction Skills Certification Scheme",
+    description: "CSCS cards provide proof that individuals working on construction sites have the required training and qualifications for their role.",
+    details: "Our team members hold valid CSCS cards, demonstrating their competence and commitment to health and safety on construction sites across the UK.",
+    link: "https://www.cscs.uk.com/"
+  },
+  {
+    title: "NPORS - National Plant Operators Registration Scheme",
+    description: "NPORS provides nationally recognized qualifications for plant and equipment operators.",
+    details: "Our operators hold NPORS certifications for the machinery and equipment used on our construction sites, ensuring safe and competent operation.",
+    link: "https://npors.com/"
+  },
+  {
+    title: "EUSR - Energy & Utility Skills Register",
+    description: "The EUSR card scheme provides proof of competence for those working in the gas, power, water, and telecommunications industries.",
+    details: "Relevant team members hold EUSR cards for work involving utilities infrastructure and services.",
+    link: "https://eusr.co.uk/"
+  },
+  {
+    title: "IOSH - Institution of Occupational Safety and Health",
+    description: "IOSH provides professional health and safety qualifications recognized worldwide.",
+    details: "Our commitment to health and safety includes IOSH training, ensuring our team understands their responsibilities and can identify and manage workplace risks effectively.",
+    link: "https://iosh.com/"
+  }
+];
+
+const shieldIcon = "M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm-1 15l-4-4 1.41-1.41L11 14.17l5.59-5.59L18 10l-7 7z";
 ---
 
 <Layout 
@@ -34,127 +75,27 @@ import PageHero from '../../components/PageHero.astro';
   <section class="certifications-list-section section" style="background: white; padding-top: 0;">
     <div class="container">
       <div class="certifications-list">
-
-        <article class="cert-item">
-          <div class="cert-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--primary)" width="48" height="48">
-              <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm-1 15l-4-4 1.41-1.41L11 14.17l5.59-5.59L18 10l-7 7z"/>
-            </svg>
-          </div>
-          <div class="cert-content">
-            <h3>RIDBA - Road and Infrastructure Development Body of Association</h3>
-            <p class="cert-description">
-              RIDBA represents the interests of companies involved in road and infrastructure development, promoting best practices and high standards.
-            </p>
-            <p>
-              As a member of RIDBA, GBRS Services Ltd adheres to their code of practice, ensuring quality and professionalism in all our infrastructure projects.
-            </p>
-            <a href="https://www.ridba.org.uk/" target="_blank" rel="noopener noreferrer" class="cert-link">
-              Learn more about RIDBA →
-            </a>
-          </div>
-        </article>
-        
-        <article class="cert-item">
-          <div class="cert-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--primary)" width="48" height="48">
-              <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm-1 15l-4-4 1.41-1.41L11 14.17l5.59-5.59L18 10l-7 7z"/>
-            </svg>
-          </div>
-          <div class="cert-content">
-            <h3>SWQR - Street Works Qualification Register</h3>
-            <p class="cert-description">
-              The SWQR qualification certifies that our operatives and supervisors are fully trained and competent to carry out work on public highways in accordance with the New Roads and Street Works Act 1991 (NRSWA).
-            </p>
-            <p>
-              This certification means our team is legally qualified to install, maintain, and repair utilities or infrastructure in streets while ensuring public safety, compliance with regulations, and minimal disruption to traffic and pedestrians.
-            </p>
-            <a href="https://www.swqr.org.uk/SWQR/Home" target="_blank" rel="noopener noreferrer" class="cert-link">
-              Learn more about SWQR →
-            </a>
-          </div>
-        </article>
-
-        <article class="cert-item">
-          <div class="cert-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--primary)" width="48" height="48">
-              <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm-1 15l-4-4 1.41-1.41L11 14.17l5.59-5.59L18 10l-7 7z"/>
-            </svg>
-          </div>
-          <div class="cert-content">
-            <h3>CSCS - Construction Skills Certification Scheme</h3>
-            <p class="cert-description">
-              CSCS cards provide proof that individuals working on construction sites have the required training and qualifications for their role.
-            </p>
-            <p>
-              Our team members hold valid CSCS cards, demonstrating their competence and commitment to health and safety on construction sites across the UK.
-            </p>
-            <a href="https://www.cscs.uk.com/" target="_blank" rel="noopener noreferrer" class="cert-link">
-              Learn more about CSCS →
-            </a>
-          </div>
-        </article>
-
-        <article class="cert-item">
-          <div class="cert-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--primary)" width="48" height="48">
-              <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm-1 15l-4-4 1.41-1.41L11 14.17l5.59-5.59L18 10l-7 7z"/>
-            </svg>
-          </div>
-          <div class="cert-content">
-            <h3>NPORS - National Plant Operators Registration Scheme</h3>
-            <p class="cert-description">
-              NPORS provides nationally recognized qualifications for plant and equipment operators.
-            </p>
-            <p>
-              Our operators hold NPORS certifications for the machinery and equipment used on our construction sites, ensuring safe and competent operation.
-            </p>
-            <a href="https://npors.com/" target="_blank" rel="noopener noreferrer" class="cert-link">
-              Learn more about NPORS →
-            </a>
-          </div>
-        </article>
-
-        <article class="cert-item">
-          <div class="cert-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--primary)" width="48" height="48">
-              <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm-1 15l-4-4 1.41-1.41L11 14.17l5.59-5.59L18 10l-7 7z"/>
-            </svg>
-          </div>
-          <div class="cert-content">
-            <h3>EUSR - Energy & Utility Skills Register</h3>
-            <p class="cert-description">
-              The EUSR card scheme provides proof of competence for those working in the gas, power, water, and telecommunications industries.
-            </p>
-            <p>
-              Relevant team members hold EUSR cards for work involving utilities infrastructure and services.
-            </p>
-            <a href="https://eusr.co.uk/" target="_blank" rel="noopener noreferrer" class="cert-link">
-              Learn more about EUSR →
-            </a>
-          </div>
-        </article>
-
-        <article class="cert-item">
-          <div class="cert-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--primary)" width="48" height="48">
-              <path d="M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm-1 15l-4-4 1.41-1.41L11 14.17l5.59-5.59L18 10l-7 7z"/>
-            </svg>
-          </div>
-          <div class="cert-content">
-            <h3>IOSH - Institution of Occupational Safety and Health</h3>
-            <p class="cert-description">
-              IOSH provides professional health and safety qualifications recognized worldwide.
-            </p>
-            <p>
-              Our commitment to health and safety includes IOSH training, ensuring our team understands their responsibilities and can identify and manage workplace risks effectively.
-            </p>
-            <a href="https://iosh.com/" target="_blank" rel="noopener noreferrer" class="cert-link">
-              Learn more about IOSH →
-            </a>
-          </div>
-        </article>
-
+        {certifications.map((cert) => (
+          <article class="cert-item">
+            <div class="cert-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--primary)" width="48" height="48">
+                <path d={shieldIcon}/>
+              </svg>
+            </div>
+            <div class="cert-content">
+              <h3>{cert.title}</h3>
+              <p class="cert-description">
+                {cert.description}
+              </p>
+              <p>
+                {cert.details}
+              </p>
+              <a href={cert.link} target="_blank" rel="noopener noreferrer" class="cert-link">
+                Learn more about {cert.title.split(' - ')[0]} →
+              </a>
+            </div>
+          </article>
+        ))}
       </div>
     </div>
   </section>
