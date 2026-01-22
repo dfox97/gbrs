@@ -5,14 +5,171 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <link href="/admin/config.yml" type="text/yaml" rel="cms-config-url" />
-    <link rel="stylesheet" href="/admin/admin.css" />
     <title>Content Manager</title>
-    <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-    <script>
-      CMS.registerPreviewStyle("/admin/admin.css");
-    </script>
+    <style>
+      @font-face { font-family: "Inter"; font-style: normal; font-weight: 500; font-display: swap; src: url("/fonts/web/Inter-Medium.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-style: normal; font-weight: 600; font-display: swap; src: url("/fonts/web/Inter-SemiBold.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-style: normal; font-weight: 700; font-display: swap; src: url("/fonts/web/Inter-Bold.woff2") format("woff2"); }
+      @font-face { font-family: "Inter"; font-style: normal; font-weight: 800; font-display: swap; src: url("/fonts/web/Inter-ExtraBold.woff2") format("woff2"); }
+    </style>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body>
+    <!-- Decap CMS -->
     <script src="https://unpkg.com/decap-cms@^3.1.2/dist/decap-cms.js"></script>
+    
+    <script>
+      (function() {
+        var liveData = { projects: [], certs: [] };
+
+        // Fetch latest content snapshots from the live build
+        fetch('/admin/content.json')
+          .then(res => res.json())
+          .then(data => { liveData = data; })
+          .catch(err => console.error('Error loading preview data:', err));
+
+        var interval = setInterval(function() {
+          if (window.CMS) {
+            clearInterval(interval);
+            initCMS();
+          }
+        }, 100);
+
+        function initCMS() {
+          CMS.registerPreviewStyle("/admin/admin.css");
+          var h = window.h;
+
+          var CATEGORIES = {
+            'agricultural': 'Agricultural', 'industrial': 'Industrial', 'recladding': 'Recladding', 'groundworks': 'Groundworks', 'new-build': 'New Build',
+          };
+
+          // Robust image resolution for the CMS environment
+          function resolveImage(thumb, getAsset) {
+            if (!thumb) return '';
+            // 1. Blobs/Data URLs (from the editor)
+            if (typeof thumb === 'string' && (thumb.startsWith('blob:') || thumb.startsWith('data:'))) return thumb;
+            // 2. CMS Asset Manager (for repo paths like src/assets/...)
+            try {
+              var cleanPath = typeof thumb === 'string' ? thumb.replace('../../assets', 'src/assets') : thumb;
+              var asset = getAsset(cleanPath);
+              if (asset) return asset.toString();
+            } catch (e) {}
+            // 3. Fallback for processed live paths (/_astro/...)
+            return typeof thumb === 'string' && thumb.startsWith('/') ? thumb : '';
+          }
+
+          var SiteHeader = function() {
+            return h('header', { className: 'header' },
+              h('div', { className: 'container nav-container' },
+                h('div', { className: 'logo' },
+                  h('img', { src: '/gbrs_ltd_logo.jpg', className: 'logo-image', width: 50, height: 50 }),
+                  h('span', { className: 'logo-text' }, 'GBRS Services Ltd')
+                ),
+                h('div', { className: 'header-contact' }, h('div', { className: 'header-phone' }, 'Call: 07555 804062'))
+              )
+            );
+          };
+
+          var SiteFooter = function() {
+            return h('footer', { className: 'footer' },
+              h('div', { className: 'container' },
+                h('div', { className: 'footer-content' },
+                  h('div', { className: 'footer-section' }, h('h3', null, 'GBRS Services Ltd'), h('p', null, 'From Foundations to Finish'))
+                ),
+                h('div', { className: 'footer-bottom' }, h('p', null, '© 2025 GBRS Services Ltd.'))
+              )
+            );
+          };
+
+          // --- Project Preview ---
+          var ProjectPreview = ({ entry, getAsset }) => {
+            var data = entry.get('data').toJS();
+            var thumbnailUrl = resolveImage(data.thumbnail, getAsset);
+            
+            var currentItem = {
+              title: data.title || 'New Project',
+              category: data.category,
+              description: data.description,
+              thumbnail: thumbnailUrl,
+              order: data.order || 100,
+              gallery: data.gallery || [],
+              isEditing: true
+            };
+
+            // DEDUPLICATION: Match by title to hide the old version of what you're editing
+            var filteredLiveProjects = liveData.projects.filter(function(p) { return p.title !== data.title; });
+            var allItems = filteredLiveProjects.concat([currentItem]);
+            allItems.sort(function(a, b) { return (a.order || 100) - (b.order || 100); });
+
+            return h('div', { className: 'preview-full-site' },
+              h(SiteHeader),
+              h('section', { className: 'page-hero' }, h('div', { className: 'hero-overlay' }, h('h1', null, 'Our Projects'))),
+              h('section', { className: 'projects section' },
+                h('div', { className: 'container' },
+                  h('div', { className: 'projects-grid-enhanced' },
+                    allItems.map(function(proj) {
+                      var galleryCount = proj.gallery ? proj.gallery.length : 0;
+                      var img = proj.isEditing ? proj.thumbnail : resolveImage(proj.thumbnail, getAsset);
+                      return h('article', { 
+                        className: 'project-card', 
+                        style: proj.isEditing ? { border: '3px solid #F36F21', transform: 'scale(1.01)', zIndex: 10 } : { opacity: 0.7 }
+                      },
+                        h('div', { className: 'project-images' },
+                          img && h('img', { src: img, className: 'project-main-img' }),
+                          h('div', { className: 'project-badge' }, CATEGORIES[proj.category] || proj.category)
+                        ),
+                        h('div', { className: 'project-info' },
+                          h('h3', null, proj.title),
+                          h('p', { className: 'project-description' }, proj.description),
+                          galleryCount > 0 && h('button', { className: 'view-gallery-btn' }, 'View Gallery (' + galleryCount + ' photos) →')
+                        )
+                      );
+                    })
+                  )
+                )
+              ),
+              h(SiteFooter)
+            );
+          };
+
+          CMS.registerPreviewTemplate('projects', ProjectPreview);
+
+          // --- Certification Preview ---
+          var CertificationPreview = ({ entry }) => {
+            var data = entry.get('data').toJS();
+            var shieldIcon = "M12 2L4 5v6.09c0 5.05 3.41 9.76 8 10.91 4.59-1.15 8-5.86 8-10.91V5l-8-3zm-1 15l-4-4 1.41-1.41L11 14.17l5.59-5.59L18 10l-7 7z";
+            var currentItem = { title: data.title || 'New Certification', description: data.description, details: data.details, link: data.link, order: data.order || 100, isEditing: true };
+            var filteredLiveCerts = liveData.certs.filter(function(c) { return c.title !== data.title; });
+            var allItems = filteredLiveCerts.concat([currentItem]);
+            allItems.sort(function(a, b) { return (a.order || 100) - (b.order || 100); });
+
+            return h('div', { className: 'preview-full-site' },
+              h(SiteHeader),
+              h('section', { className: 'page-hero' }, h('div', { className: 'hero-overlay' }, h('h1', null, 'Certifications'))),
+              h('section', { className: 'certifications-list-section section' },
+                h('div', { className: 'container' },
+                  h('div', { className: 'certifications-list' },
+                    allItems.map(function(cert) {
+                      return h('article', { className: 'cert-item', style: cert.isEditing ? { borderLeft: '5px solid #F36F21', background: '#fff9f5' } : { opacity: 0.7 } },
+                        h('div', { className: 'cert-icon' }, h('svg', { viewBox: '0 0 24 24', fill: '#F36F21', width: 48, height: 48 }, h('path', { d: shieldIcon }))),
+                        h('div', { className: 'cert-content' },
+                          h('h3', null, cert.title),
+                          h('p', { className: 'cert-description' }, cert.description),
+                          h('p', null, cert.details),
+                          cert.link && h('a', { className: "cert-link", href: cert.link }, 'Learn more →')
+                        )
+                      );
+                    })
+                  )
+                )
+              ),
+              h(SiteFooter)
+            );
+          };
+
+          CMS.registerPreviewTemplate('certifications', CertificationPreview);
+        }
+      })();
+    </script>
   </body>
 </html>

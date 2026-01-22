@@ -2,96 +2,71 @@ backend:
   name: git-gateway
   branch: main
   squash_merges: true
+
 publish_mode: editorial_workflow
+
 media_folder: "src/assets/projects"
 public_folder: "../../assets/projects"
+
 collections:
   - name: "projects"
     label: "Projects"
     folder: "src/content/projects"
-    media_folder: "/src/assets/projects/{{fields.category}}"
-    public_folder: "/src/assets/projects/{{fields.category}}"
+    media_folder: "src/assets/projects/{{fields.category}}"
+    public_folder: "../../assets/projects/{{fields.category}}"
     create: true
     slug: "{{slug}}"
     identifier_field: title
     fields:
-      - {
-          label: "Project Title",
-          name: "title",
-          widget: "string",
-          hint: "e.g., 'Double Span Agricultural Building'",
-        }
-      - {
-          label: "Primary Category",
-          name: "category",
-          widget: "select",
-          hint: "Main category for this project (used for filtering)",
-          options:
-            [
-              { label: "Agricultural", value: "agricultural" },
-              { label: "Industrial", value: "industrial" },
-              { label: "Recladding", value: "recladding" },
-              { label: "Groundworks", value: "groundworks" },
-              { label: "New Build", value: "new-build" },
-            ],
-        }
-      - {
-          label: "Related Services (Optional)",
-          name: "services",
-          widget: "select",
-          multiple: true,
-          required: false,
-          hint: "Select all services involved in this project",
-          options:
-            [
-              { label: "Agricultural Buildings", value: "agricultural" },
-              { label: "Industrial Buildings", value: "industrial" },
-              { label: "Groundworks & Civils", value: "groundworks" },
-              { label: "Steel Erection", value: "steel-erection" },
-            ],
-        }
-      - {
-          label: "Project Description",
-          name: "description",
-          widget: "text",
-          hint: "Brief summary (1-2 sentences)",
-        }
-      - {
-          label: "Thumbnail Image",
-          name: "thumbnail",
-          widget: "image",
-          hint: "Main image shown on project cards (recommended: 1200x800px)",
-        }
-      - {
-          label: "Gallery Images",
-          name: "gallery",
-          widget: "list",
-          required: false,
-          hint: "Add multiple images for the project gallery",
-          field: { label: "Image", name: "image", widget: "image" },
-        }
-      - {
-          label: "Featured Project",
-          name: "featured",
-          widget: "boolean",
-          default: false,
-          hint: "Show on homepage? (Select up to 4 featured projects total)",
-        }
-      - {
-          label: "Display Order",
-          name: "order",
-          widget: "number",
-          default: 100,
-          hint: "Lower numbers appear first (e.g., 1, 2, 3). Use 100 for standard ordering.",
-        }
+      - label: "Project Title"
+        name: "title"
+        widget: "string"
+      - label: "Primary Category"
+        name: "category"
+        widget: "select"
+        options:
+          - { label: "Agricultural", value: "agricultural" }
+          - { label: "Industrial", value: "industrial" }
+          - { label: "Recladding", value: "recladding" }
+          - { label: "Groundworks", value: "groundworks" }
+          - { label: "New Build", value: "new-build" }
+      - label: "Related Services (Optional)"
+        name: "services"
+        widget: "select"
+        multiple: true
+        required: false
+        options:
+          - { label: "Agricultural Buildings", value: "agricultural" }
+          - { label: "Industrial Buildings", value: "industrial" }
+          - { label: "Groundworks & Civils", value: "groundworks" }
+          - { label: "Steel Erection", value: "steel-erection" }
+      - label: "Project Description"
+        name: "description"
+        widget: "text"
+      - label: "Thumbnail Image"
+        name: "thumbnail"
+        widget: "image"
+      - label: "Gallery Images"
+        name: "gallery"
+        widget: "list"
+        required: false
+        field: { label: "Image", name: "image", widget: "image" }
+      - label: "Featured Project"
+        name: "featured"
+        widget: "boolean"
+        default: false
+      - label: "Display Order"
+        name: "order"
+        widget: "number"
+        default: 100
 
   - name: "certifications"
     label: "Certifications"
     folder: "src/content/certifications"
     extension: "yaml"
     format: "yml"
-    media_folder: "/src/assets/certifications"
-    public_folder: "/src/assets/certifications"
+    media_folder: "src/assets/certifications"
+    public_folder: "../../assets/certifications"
     create: true
     slug: "{{slug}}"
     identifier_field: title
@@ -100,10 +75,4 @@ collections:
       - { label: "Short Description", name: "description", widget: "text" }
       - { label: "Detailed Information", name: "details", widget: "text" }
       - { label: "Website Link", name: "link", widget: "string" }
-      - {
-          label: "Display Order",
-          name: "order",
-          widget: "number",
-          default: 100,
-          hint: "Lower numbers appear first",
-        }
+      - { label: "Display Order", name: "order", widget: "number", default: 100 }
