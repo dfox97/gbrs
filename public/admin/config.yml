@@ -3,17 +3,15 @@ backend:
   branch: main
   squash_merges: true
 
-publish_mode: editorial_workflow
-
 media_folder: "src/assets/projects"
-public_folder: "../../assets/projects"
+public_folder: "/src/assets/projects"
 
 collections:
   - name: "projects"
     label: "Projects"
     folder: "src/content/projects"
-    media_folder: "src/assets/projects/{{fields.category}}"
-    public_folder: "../../assets/projects/{{fields.category}}"
+    media_folder: "src/assets/projects"
+    public_folder: "/src/assets/projects"
     create: true
     slug: "{{slug}}"
     identifier_field: title

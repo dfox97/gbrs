@@ -4,9 +4,10 @@ import { PROJECT_CATEGORIES } from '../consts';
 
 interface Props {
   project: any;
+  eager?: boolean;
 }
 
-const { project } = Astro.props;
+const { project, eager = false } = Astro.props;
 
 // Helper to get optimized gallery URLs
 function getGallerySrcs(proj: any) {
@@ -23,8 +24,10 @@ const categoryLabel = PROJECT_CATEGORIES[project.data.category as keyof typeof P
     <Image 
       src={project.data.thumbnail} 
       alt={project.data.title} 
-      width={600} height={400} 
-      class="project-main-img"
+      width={600} 
+      height={400} 
+      loading={eager ? "eager" : "lazy"}
+      class="project-main-img img-fade-in"
     />
     <div class="project-badge">{categoryLabel}</div>
   </div>

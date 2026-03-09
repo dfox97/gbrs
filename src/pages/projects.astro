@@ -37,8 +37,8 @@ const sortedProjects = projectsRaw.sort((a, b) => a.data.order - b.data.order);
       </div>
       
       <div class="projects-grid-enhanced" id="projects-grid">
-        {sortedProjects.map(project => (
-          <ProjectCard project={project} />
+        {sortedProjects.map((project, index) => (
+          <ProjectCard project={project} eager={index < 12} />
         ))}
 
         <div class="project-card placeholder-card" style="grid-column: 1 / -1; background: var(--light-grey); text-align: center; padding: 60px 20px;">
@@ -97,15 +97,27 @@ const sortedProjects = projectsRaw.sort((a, b) => a.data.order - b.data.order);
       const pageCount = Math.ceil(visibleCards.length / projectsPerPage);
       if (currentPage > pageCount) currentPage = 1;
       
-      // Hide all first
-      projectCards.forEach(card => card.style.display = 'none');
+      // Hide all cards first (removes from layout with display: none)
+      projectCards.forEach(card => {
+        card.style.display = 'none';
+        card.classList.remove('card-visible');
+      });
 
-      // Show current page of filtered items
+      // Show current page of filtered items with animation
       const start = (currentPage - 1) * projectsPerPage;
       const end = start + projectsPerPage;
       const pageItems = visibleCards.slice(start, end);
       
-      pageItems.forEach(card => card.style.display = '');
+      // Show cards and animate them in with a stagger effect
+      pageItems.forEach((card, index) => {
+        card.style.display = '';
+        // Small delay to allow display to apply before adding animation class
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            card.classList.add('card-visible');
+          }, index * 60); // 60ms stagger between each card
+        });
+      });
 
       // Update UI
       if (prevBtn) prevBtn.disabled = currentPage === 1;
@@ -167,6 +179,29 @@ const sortedProjects = projectsRaw.sort((a, b) => a.data.order - b.data.order);
       });
     }
 
+    // Initialize image fade-in animations
+    function initImageAnimations() {
+      const images = document.querySelectorAll('.img-fade-in');
+      images.forEach(img => {
+        if (img.complete) {
+          img.classList.add('loaded');
+        } else {
+          img.addEventListener('load', () => {
+            img.classList.add('loaded');
+          });
+        }
+      });
+    }
+
+    // Re-initialize animations after pagination/filtering
+    const originalUpdatePagination = updatePagination;
+    updatePagination = function() {
+      originalUpdatePagination();
+      setTimeout(initImageAnimations, 100);
+    };
+
+    // Initial load
     updatePagination();
+    initImageAnimations();
   </script>
 </Layout>

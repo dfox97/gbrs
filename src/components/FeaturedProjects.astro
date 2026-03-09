@@ -20,8 +20,8 @@ const featuredProjects = allProjects
     </p>
     
     <div class="projects-grid-enhanced">
-      {featuredProjects.map(project => (
-        <ProjectCard project={project} />
+      {featuredProjects.map((project, index) => (
+        <ProjectCard project={project} eager={index < 4} />
       ))}
     </div>
 
@@ -31,3 +31,28 @@ const featuredProjects = allProjects
     </div>
   </div>
 </section>
+
+<script is:inline>
+  // Initialize animations for featured project cards
+  (function() {
+    // Add card-visible class with stagger
+    const cards = document.querySelectorAll('#projects .project-card');
+    cards.forEach((card, index) => {
+      setTimeout(() => {
+        card.classList.add('card-visible');
+      }, index * 60);
+    });
+
+    // Initialize image fade-in
+    const images = document.querySelectorAll('.img-fade-in');
+    images.forEach(img => {
+      if (img.complete) {
+        img.classList.add('loaded');
+      } else {
+        img.addEventListener('load', () => {
+          img.classList.add('loaded');
+        });
+      }
+    });
+  })();
+</script>
