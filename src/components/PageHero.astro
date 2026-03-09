@@ -1,5 +1,5 @@
 ---
-import { getImage } from "astro:assets";
+import { Image } from "astro:assets";
 // You can make this a prop if you want different hero images for different pages
 import heroImage from "../assets/photos/liams-steel-up.avif";
 
@@ -9,15 +9,53 @@ interface Props {
 }
 
 const { title, subtitle } = Astro.props;
-
-const optimizedBg = await getImage({src: heroImage, format: 'webp'});
-const bgStyle = `background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${optimizedBg.src}) center/cover no-repeat;`;
 ---
 
-<section class="page-hero" id="main" style={bgStyle}>
+<section class="page-hero" id="main">
+  <Image 
+    src={heroImage} 
+    alt={`${title} - GBRS Services`} 
+    class="hero-bg-image"
+    loading="eager"
+    fetchpriority="high"
+    decoding="sync"
+  />
+  <div class="hero-overlay-bg"></div>
   <div class="hero-overlay">
     <h1>{title}</h1>
     {subtitle && <p class="hero-subtitle">{subtitle}</p>}
     <slot />
   </div>
 </section>
+
+<style>
+  .page-hero {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .hero-overlay-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6));
+    z-index: 1;
+  }
+
+  .hero-overlay {
+    position: relative;
+    z-index: 2;
+  }
+</style>

@@ -1,12 +1,18 @@
 ---
 import ContactButton from './buttons/ContactButton.astro';
-import { getImage } from "astro:assets";
+import { Image } from "astro:assets";
 import heroImage from "../assets/photos/liams-steel-up.avif";
-
-const optimizedBg = await getImage({src: heroImage, format: 'webp'});
-const bgStyle = `background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url(${optimizedBg.src}) center/cover no-repeat;`;
 ---
-<section class="hero" id="main" style={bgStyle}>
+<section class="hero" id="main">
+  <Image 
+    src={heroImage} 
+    alt="GBRS Services Construction Site" 
+    class="hero-bg-image"
+    loading="eager"
+    fetchpriority="high"
+    decoding="sync"
+  />
+  <div class="hero-overlay-bg"></div>
   <div class="hero-overlay">
     <div class="hero-badge">Est. 2022 • 40+ Years Combined Experience</div>
     <h1>Agricultural & Industrial Construction Specialists</h1>
@@ -33,3 +39,35 @@ const bgStyle = `background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55))
     </div>
   </div>
 </section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .hero-overlay-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55));
+    z-index: 1;
+  }
+
+  .hero-overlay {
+    position: relative;
+    z-index: 2;
+  }
+</style>
