@@ -14,9 +14,9 @@ description: >-
 
 
   This project was truly 'from foundations to finish'
-thumbnail: ../../assets/projects/agricultural/double-span-building.avif
+thumbnail: /src/assets/projects/agricultural/double-span-building.avif
 gallery:
-  - ../../assets/projects/agricultural/double-span-building.avif
+  - /src/assets/projects/agricultural/double-span-building.avif
 featured: false
 order: 4
 ---

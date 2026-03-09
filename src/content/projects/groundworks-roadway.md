@@ -9,12 +9,12 @@ description: >+
 
   We dug out the existing ground, leveled and compacted new stone for a solid base. Then supplied and laid 200mm thick RC40 ready mixed concrete, with A142 Steel Mesh Reinforcement. 
 
-thumbnail: ../../assets/projects/groundworks/Groundworks_4.jpg
+thumbnail: /src/assets/projects/groundworks/Groundworks_4.jpg
 gallery:
-  - ../../assets/projects/groundworks/Groundworks_1.jpg
-  - ../../assets/projects/groundworks/Groundworks_2.jpg
-  - ../../assets/projects/groundworks/Groundworks_3.jpg
-  - ../../assets/projects/groundworks/Groundworks_4.jpg
+  - /src/assets/projects/groundworks/Groundworks_1.jpg
+  - /src/assets/projects/groundworks/Groundworks_2.jpg
+  - /src/assets/projects/groundworks/Groundworks_3.jpg
+  - /src/assets/projects/groundworks/Groundworks_4.jpg
 featured: false
 order: 5
 ---
