@@ -46,12 +46,12 @@ content:
       - name: gallery
         label: Gallery Images
         type: list
-        fields:
-          - name: image
-            label: Image
-            type: image
-            mediaLibrary:
-              path: src/assets/projects
+        summary: "{{length}} images"
+        itemName: Image
+        items:
+          type: image
+          mediaLibrary:
+            path: src/assets/projects
       - name: featured
         label: Featured Project
         type: boolean
