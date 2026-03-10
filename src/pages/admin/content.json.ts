@@ -18,7 +18,7 @@ export async function GET() {
         description: p.data.description,
         thumbnail: thumbUrl,
         order: p.data.order || 100,
-        gallery: (p.data.gallery || []).map((img: any) => img.src || img)
+        gallery: (p.data.gallery || []).map((img: any) => img.image?.src || img.image || img)
       };
     }),
     certs: certs.map(c => ({

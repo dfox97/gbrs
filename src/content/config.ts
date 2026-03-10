@@ -9,7 +9,9 @@ const projectsCollection = defineCollection({
     services: z.array(z.string()).optional(),
     description: z.string(),
     thumbnail: image(),
-    gallery: z.array(image()).default([]),
+    gallery: z.array(z.object({
+      image: image(),
+    })).default([]),
     featured: z.boolean().default(false),
     order: z.number().default(100),
   }),

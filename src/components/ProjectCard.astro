@@ -12,7 +12,7 @@ const { project, eager = false } = Astro.props;
 // Helper to get optimized gallery URLs
 function getGallerySrcs(proj: any) {
   if (!proj.data.gallery) return [];
-  return proj.data.gallery.map((imgMeta: any) => imgMeta.src);
+  return proj.data.gallery.map((imgMeta: any) => imgMeta.image.src);
 }
 
 const gallerySrcs = getGallerySrcs(project);
