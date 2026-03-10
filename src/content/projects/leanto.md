@@ -7,9 +7,9 @@ description: "A completed 80x20ft lean-to extension building taht we supplied
   system and fibre cement roof with 10ft skylights. "
 thumbnail: /src/assets/projects/industrial/project-1-agricultural_building_1.jpg
 gallery:
-  - image: /src/assets/projects/industrial/project-1-agricultural_building_1.jpg
-  - image: /src/assets/projects/industrial/project-1-agricultural_building_2.jpg
-  - image: /src/assets/projects/industrial/project-1-agricultural_building_3.jpg
+  - /src/assets/projects/industrial/project-1-agricultural_building_1.jpg
+  - /src/assets/projects/industrial/project-1-agricultural_building_2.jpg
+  - /src/assets/projects/industrial/project-1-agricultural_building_3.jpg
 featured: true
 order: 3
 ---

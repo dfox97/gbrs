@@ -9,7 +9,7 @@ export async function GET() {
       let thumbUrl = '';
       if (p.data.thumbnail) {
         // @ts-ignore - Use the live processed src from Astro
-        thumbUrl = p.data.thumbnail.src || p.data.thumbnail;
+        thumbUrl = p.data.thumbnail.src || String(p.data.thumbnail);
       }
 
       return {
@@ -18,7 +18,7 @@ export async function GET() {
         description: p.data.description,
         thumbnail: thumbUrl,
         order: p.data.order || 100,
-        gallery: (p.data.gallery || []).map((img: any) => img.image?.src || img.image || img)
+        gallery: (p.data.gallery || []).map((img: any) => img.src || String(img))
       };
     }),
     certs: certs.map(c => ({

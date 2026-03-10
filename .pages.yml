@@ -45,15 +45,11 @@ content:
           path: src/assets/projects
       - name: gallery
         label: Gallery Images
-        type: list
-        summary: "{{length}} images"
-        items:
-          type: object
-          fields:
-            - name: image
-              type: image
-              mediaLibrary:
-                path: src/assets/projects
+        type: image
+        mediaLibrary:
+          path: src/assets/projects
+        options:
+          multiple: true
       - name: featured
         label: Featured Project
         type: boolean

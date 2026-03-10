@@ -15,9 +15,9 @@ description: >-
   Here are aerial views of the multi‑span industrial warehouses re‑roofed with Goosewing grey 40mm Composite sheets and new translucent rooflights.
 thumbnail: /src/assets/projects/recladding/dji_fly_20251020_165112_0281_1760987578764_photo-min.jpg
 gallery:
-  - image: /src/assets/projects/recladding/dji_fly_20251020_165042_0279_1760987576797_photo-min.jpg
-  - image: /src/assets/projects/recladding/dji_fly_20251020_165052_0280_1760987577749_photo-min.jpg
-  - image: /src/assets/projects/recladding/dji_fly_20251020_165112_0281_1760987578764_photo-min.jpg
+  - /src/assets/projects/recladding/dji_fly_20251020_165042_0279_1760987576797_photo-min.jpg
+  - /src/assets/projects/recladding/dji_fly_20251020_165052_0280_1760987577749_photo-min.jpg
+  - /src/assets/projects/recladding/dji_fly_20251020_165112_0281_1760987578764_photo-min.jpg
 featured: false
 order: 100
 ---

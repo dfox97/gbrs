@@ -11,10 +11,10 @@ description: "We supplied and installed Concrete Panels to an existing grain
   floor. "
 thumbnail: /src/assets/projects/groundworks/groundworks_floor_project_finish.jpg
 gallery:
-  - image: /src/assets/projects/groundworks/groundworks_floor_project_start.jpg
-  - image: /src/assets/projects/groundworks/groundworks_floor_project_mid.jpg
-  - image: /src/assets/projects/groundworks/groundworks_floor_project.jpg
-  - image: /src/assets/projects/groundworks/groundworks_floor_project_finish.jpg
+  - /src/assets/projects/groundworks/groundworks_floor_project_start.jpg
+  - /src/assets/projects/groundworks/groundworks_floor_project_mid.jpg
+  - /src/assets/projects/groundworks/groundworks_floor_project.jpg
+  - /src/assets/projects/groundworks/groundworks_floor_project_finish.jpg
 featured: false
 order: 100
 ---

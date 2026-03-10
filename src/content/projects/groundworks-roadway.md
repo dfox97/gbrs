@@ -11,10 +11,10 @@ description: >+
 
 thumbnail: /src/assets/projects/groundworks/Groundworks_4.jpg
 gallery:
-  - image: /src/assets/projects/groundworks/Groundworks_1.jpg
-  - image: /src/assets/projects/groundworks/Groundworks_2.jpg
-  - image: /src/assets/projects/groundworks/Groundworks_3.jpg
-  - image: /src/assets/projects/groundworks/Groundworks_4.jpg
+  - /src/assets/projects/groundworks/Groundworks_1.jpg
+  - /src/assets/projects/groundworks/Groundworks_2.jpg
+  - /src/assets/projects/groundworks/Groundworks_3.jpg
+  - /src/assets/projects/groundworks/Groundworks_4.jpg
 featured: false
 order: 5
 ---
