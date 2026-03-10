@@ -1,0 +1,89 @@
+# Pages CMS Configuration
+# https://pagescms.org/docs/configuration
+
+media:
+  input: src/assets
+  output: assets
+
+content:
+  - name: projects
+    label: Projects
+    type: collection
+    path: src/content/projects
+    format: yaml-frontmatter
+    fields:
+      - name: title
+        label: Project Title
+        type: string
+        required: true
+      - name: category
+        label: Primary Category
+        type: enum
+        options:
+          - agricultural
+          - industrial
+          - recladding
+          - groundworks
+          - new-build
+        required: true
+      - name: services
+        label: Related Services
+        type: multi-enum
+        options:
+          - agricultural
+          - industrial
+          - groundworks
+          - steel-erection
+      - name: description
+        label: Short Description
+        type: text
+        required: true
+      - name: thumbnail
+        label: Thumbnail Image
+        type: image
+        mediaLibrary:
+          path: src/assets/projects
+      - name: gallery
+        label: Gallery Images
+        type: list
+        fields:
+          - name: image
+            label: Image
+            type: image
+            mediaLibrary:
+              path: src/assets/projects
+      - name: featured
+        label: Featured Project
+        type: boolean
+        default: false
+      - name: order
+        label: Display Order
+        type: number
+        default: 100
+
+  - name: certifications
+    label: Certifications
+    type: collection
+    path: src/content/certifications
+    format: yaml
+    extension: yaml
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: description
+        label: Short Description
+        type: text
+        required: true
+      - name: details
+        label: Detailed Information
+        type: text
+      - name: link
+        label: Website Link
+        type: url
+        required: true
+      - name: order
+        label: Display Order
+        type: number
+        default: 100
