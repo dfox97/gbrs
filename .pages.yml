@@ -46,10 +46,11 @@ content:
       - name: gallery
         label: Gallery Images
         type: image
+        options:
+          multiple:
+            max: 10
         mediaLibrary:
           path: src/assets/projects
-        options:
-          multiple: true
       - name: featured
         label: Featured Project
         type: boolean
