@@ -16,6 +16,8 @@ content:
         label: Project Title
         type: string
         required: true
+        description: "Keep under 100 characters. Example: 'Industrial Recladding - Stockton'"
+        
       - name: category
         label: Primary Category
         type: enum
@@ -26,6 +28,8 @@ content:
           - groundworks
           - new-build
         required: true
+        description: "The main category this project belongs to. This determines which service page it appears on."
+        
       - name: services
         label: Related Services
         type: multi-enum
@@ -34,15 +38,22 @@ content:
           - industrial
           - groundworks
           - steel-erection
+        description: "Optional: Additional services this project involved. Use 'steel-erection' to show projects on the Steel Erection page."
+        
       - name: description
         label: Short Description
         type: text
         required: true
+        description: "Detailed project description. This appears on project cards and in search results. Can be as detailed as needed."
+        
       - name: thumbnail
         label: Thumbnail Image
         type: image
+        required: true
         mediaLibrary:
           path: src/assets/projects
+        description: "Main image shown on project cards. Recommended: 800x600px, landscape orientation."
+        
       - name: gallery
         label: Gallery Images
         type: image
@@ -51,14 +62,29 @@ content:
             max: 10
         mediaLibrary:
           path: src/assets/projects
+        description: "Additional project photos (max 10). These appear in the lightbox gallery."
+        
       - name: featured
         label: Featured Project
         type: boolean
         default: false
+        description: "Show on homepage? Only the 4 lowest-order featured projects appear."
+        
       - name: order
         label: Display Order
         type: number
         default: 100
+        description: "Lower numbers appear first. Use 1-10 for priority projects. Default is 100 (end of list)."
+        
+      - name: completedDate
+        label: Completion Date
+        type: date
+        description: "When was this project finished? (Optional - helps with SEO rich snippets)"
+        
+      - name: location
+        label: Project Location
+        type: string
+        description: "Where is this project located? Example: 'Stockton-on-Tees, County Durham' (Optional - helps with local SEO)"
 
   - name: certifications
     label: Certifications
@@ -71,18 +97,27 @@ content:
         label: Title
         type: string
         required: true
+        description: "Certification name. Example: 'CSCS - Construction Skills Certification Scheme'"
+        
       - name: description
         label: Short Description
         type: text
         required: true
+        description: "Brief summary shown on the certifications page."
+        
       - name: details
         label: Detailed Information
         type: text
+        description: "Full description. What does this certification cover? Why is it important?"
+        
       - name: link
         label: Website Link
         type: url
         required: true
+        description: "Official website for this certification."
+        
       - name: order
         label: Display Order
         type: number
         default: 100
+        description: "Lower numbers appear first on the certifications page."

@@ -15,10 +15,14 @@ export async function GET() {
       return {
         title: p.data.title,
         category: p.data.category,
+        services: p.data.services || [],
         description: p.data.description,
         thumbnail: thumbUrl,
         order: p.data.order || 100,
-        gallery: (p.data.gallery || []).map((img: any) => img.src || String(img))
+        featured: p.data.featured || false,
+        gallery: (p.data.gallery || []).map((img: any) => img.src || String(img)),
+        completedDate: p.data.completedDate ? p.data.completedDate.toISOString() : null,
+        location: p.data.location || null
       };
     }),
     certs: certs.map(c => ({

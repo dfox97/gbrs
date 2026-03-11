@@ -3,39 +3,53 @@ import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import ProjectCard from '../../components/ProjectCard.astro';
 import PageHero from '../../components/PageHero.astro';
+import { SERVICES, projectMatchesService, getServiceBySlug, type ProjectCategoryKey } from '../../consts';
 
-// Dynamically get all projects involving steel erection
-// For now, show agricultural and industrial projects (most involve steel)
-const allSteelProjects = await getCollection('projects', ({ data }) => {
-  return data.category === 'agricultural' || 
-         data.category === 'industrial';
-});
+// Generate all service pages at build time
+export async function getStaticPaths() {
+  return SERVICES.map(service => ({
+    params: { service: service.slug },
+    props: { service }
+  }));
+}
+
+interface Props {
+  service: typeof SERVICES[0];
+}
+
+const { service } = Astro.props;
+
+// Get all projects and filter by service
+const allProjects = await getCollection('projects');
+const filteredProjects = allProjects.filter(project => 
+  projectMatchesService(project.data, service)
+);
 
 // Sort by order
-const sortedProjects = allSteelProjects.sort((a, b) => a.data.order - b.data.order);
+const sortedProjects = filteredProjects.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <Layout 
-  title="Steel Erection Projects | GBRS Services"
-  description="Steel erection and cladding projects by GBRS Services Hartlepool. Portal frames, cladding, and steel structures."
+  title={service.metaTitle}
+  description={service.metaDescription}
   activePage="services"
 >
   <PageHero 
-    title="Steel Erection" 
-    subtitle="Expert steel frame construction for various structures"
+    title={service.title} 
+    subtitle={service.subtitle}
   >
-     <div style="margin-top: 20px;">
-        <a href="/services" class="btn-secondary" style="background: rgba(255,255,255,0.2); border-color: white;">← Back to Services</a>
-      </div>
+    <div style="margin-top: 20px;">
+      <a href="/services" class="btn-secondary" style="background: rgba(255,255,255,0.2); border-color: white;">← Back to Services</a>
+    </div>
   </PageHero>
 
   <section class="projects section">
     <div class="container">
       <div class="section-header">
-        <h2>Steel Erection Projects</h2>
+        <h2>{service.title} Projects</h2>
       </div>
       <p class="projects-intro">
-        Discover our steel erection projects across the North East. We provide professional and efficient steel frame installation for agricultural, industrial, and commercial buildings.
+        {service.introText}
       </p>
       
       <div class="projects-grid-enhanced">
@@ -46,7 +60,7 @@ const sortedProjects = allSteelProjects.sort((a, b) => a.data.order - b.data.ord
         {sortedProjects.length === 0 && (
           <div class="project-card" style="grid-column: 1 / -1; background: var(--light-grey); text-align: center; padding: 60px 20px;">
             <h3 style="margin-bottom: 15px; color: #333;">Projects Coming Soon</h3>
-            <p style="margin-bottom: 25px; color: #666;">We're currently uploading our steel erection projects. Check back soon or contact us to discuss your requirements.</p>
+            <p style="margin-bottom: 25px; color: #666;">We're currently uploading our {service.title.toLowerCase()} projects. Check back soon or contact us to discuss your requirements.</p>
             <a href="/#contact" class="btn-primary">Get a Free Quote</a>
           </div>
         )}
