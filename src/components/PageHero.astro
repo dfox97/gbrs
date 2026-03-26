@@ -28,6 +28,21 @@ const { title, subtitle } = Astro.props;
   </div>
 </section>
 
+<script is:inline>
+  document.addEventListener('astro:page-load', () => {
+    const heroImg = document.querySelector('.page-hero .hero-bg-image');
+    if (heroImg) {
+      if (heroImg.complete) {
+        heroImg.classList.add('loaded');
+      } else {
+        heroImg.addEventListener('load', () => {
+          heroImg.classList.add('loaded');
+        });
+      }
+    }
+  });
+</script>
+
 <style>
   .page-hero {
     position: relative;

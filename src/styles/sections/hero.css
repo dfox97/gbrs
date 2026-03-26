@@ -1,11 +1,22 @@
 .hero {
-  background-color: #333; /* Fallback */
+  background-color: var(--primary-dark, #d65a1a); /* Brand color fallback */
   min-height: 75vh;
   position: relative;
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* Hero image fade-in animation */
+.hero-bg-image {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.hero-bg-image.loaded,
+.hero-bg-image[src] {
+  opacity: 1;
 }
 
 @media (min-width: 768px) {
@@ -107,7 +118,7 @@
 }
 
 .page-hero {
-  background-color: #333; /* Fallback */
+  background-color: var(--primary-dark, #d65a1a); /* Brand color fallback */
   min-height: 40vh;
   display: flex;
   justify-content: center;
