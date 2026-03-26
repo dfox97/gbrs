@@ -10,7 +10,7 @@ interface Props {
 
 const { title, subtitle } = Astro.props;
 
-const optimizedBg = await getImage({src: heroImage, format: 'webp'});
+const optimizedBg = await getImage({ src: heroImage, format: "webp" });
 const bgStyle = `background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${optimizedBg.src}) center/cover no-repeat;`;
 ---
 
