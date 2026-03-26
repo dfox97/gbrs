@@ -1,10 +1,10 @@
 ---
-import { getCollection } from 'astro:content';
-import ProjectCard from './ProjectCard.astro';
+import { getCollection } from "astro:content";
+import ProjectCard from "./ProjectCard.astro";
 
-const allProjects = await getCollection('projects');
+const allProjects = await getCollection("projects");
 const featuredProjects = allProjects
-  .filter(p => p.data.featured)
+  .filter((p) => p.data.featured)
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, 4); // Cap at 4 featured projects
 ---
@@ -16,13 +16,11 @@ const featuredProjects = allProjects
       <h2>Featured Projects</h2>
     </div>
     <p class="projects-intro">
-      See our latest completed projects across Hartlepool and the North East. 
+      See our latest completed projects across Hartlepool and the North East.
     </p>
-    
+
     <div class="projects-grid-enhanced">
-      {featuredProjects.map(project => (
-        <ProjectCard project={project} />
-      ))}
+      {featuredProjects.map((project) => <ProjectCard project={project} />)}
     </div>
 
     <div class="projects-cta">
@@ -31,3 +29,30 @@ const featuredProjects = allProjects
     </div>
   </div>
 </section>
+
+<script is:inline>
+  document.addEventListener('astro:page-load', () => {
+    // Initialize animations for featured project cards
+    (function () {
+      // Add card-visible class with stagger
+      const cards = document.querySelectorAll("#projects .project-card");
+      cards.forEach((card, index) => {
+        setTimeout(() => {
+          card.classList.add("card-visible");
+        }, index * 60);
+      });
+
+      // Initialize image fade-in
+      const images = document.querySelectorAll(".img-fade-in");
+      images.forEach((img) => {
+        if (img.complete) {
+          img.classList.add("loaded");
+        } else {
+          img.addEventListener("load", () => {
+            img.classList.add("loaded");
+          });
+        }
+      });
+    })();
+  });
+</script>

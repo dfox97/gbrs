@@ -9,12 +9,13 @@ export async function GET() {
       let thumbUrl = '';
       if (p.data.thumbnail) {
         // @ts-ignore - Use the live processed src from Astro
-        thumbUrl = p.data.thumbnail.src || p.data.thumbnail;
+        thumbUrl = p.data.thumbnail.src || String(p.data.thumbnail);
       }
 
       return {
         title: p.data.title,
         category: p.data.category,
+        services: p.data.services || [],
         description: p.data.description,
         thumbnail: thumbUrl,
         order: p.data.order || 100,

@@ -69,6 +69,7 @@ const sortedProjects = projectsRaw.sort((a, b) => a.data.order - b.data.order);
 
 
   <script is:inline>
+    document.addEventListener('astro:page-load', () => {
     // Pagination and Filtering Logic
     let currentPage = 1;
     const projectsPerPage = 12;
@@ -97,15 +98,27 @@ const sortedProjects = projectsRaw.sort((a, b) => a.data.order - b.data.order);
       const pageCount = Math.ceil(visibleCards.length / projectsPerPage);
       if (currentPage > pageCount) currentPage = 1;
       
-      // Hide all first
-      projectCards.forEach(card => card.style.display = 'none');
+      // Hide all cards first (removes from layout with display: none)
+      projectCards.forEach(card => {
+        card.style.display = 'none';
+        card.classList.remove('card-visible');
+      });
 
       // Show current page of filtered items
       const start = (currentPage - 1) * projectsPerPage;
       const end = start + projectsPerPage;
       const pageItems = visibleCards.slice(start, end);
       
-      pageItems.forEach(card => card.style.display = '');
+      // Show cards and animate them in with a stagger effect
+      pageItems.forEach((card, index) => {
+        card.style.display = '';
+        // Small delay to allow display to apply before adding animation class
+        requestAnimationFrame(() => {
+          setTimeout(() => {
+            card.classList.add('card-visible');
+          }, index * 60); // 60ms stagger between each card
+        });
+      });
 
       // Update UI
       if (prevBtn) prevBtn.disabled = currentPage === 1;
@@ -167,6 +180,23 @@ const sortedProjects = projectsRaw.sort((a, b) => a.data.order - b.data.order);
       });
     }
 
+    // Initialize image fade-in animations
+    function initImageAnimations() {
+      const images = document.querySelectorAll('.img-fade-in');
+      images.forEach(img => {
+        if (img.complete) {
+          img.classList.add('loaded');
+        } else {
+          img.addEventListener('load', () => {
+            img.classList.add('loaded');
+          });
+        }
+      });
+    }
+
+    // Initial load
     updatePagination();
+    initImageAnimations();
+    }); // Close astro:page-load listener
   </script>
 </Layout>

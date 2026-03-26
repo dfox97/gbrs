@@ -27,6 +27,7 @@
 </div>
 
 <script is:inline>
+  document.addEventListener('astro:page-load', () => {
   const modal = document.getElementById('projectLightbox');
   const modalTitle = document.getElementById('lightboxTitle');
   const modalTrack = document.querySelector('#projectLightbox .modal-track');
@@ -260,5 +261,6 @@
       },
       { passive: true }
     );
-  })();
+  })(); // Close attachSwipe IIFE
+  }); // Close astro:page-load listener
 </script>

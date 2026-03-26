@@ -59,4 +59,15 @@ const sortedProjects = allGroundworksProjects.sort((a, b) => a.data.order - b.da
       </div>
     </div>
   </section>
+
+  <script is:inline>
+    document.addEventListener('astro:page-load', () => {
+      const cards = document.querySelectorAll('.project-card');
+      cards.forEach((card, index) => {
+        setTimeout(() => {
+          card.classList.add('card-visible');
+        }, index * 60);
+      });
+    });
+  </script>
 </Layout>

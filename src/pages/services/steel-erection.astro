@@ -5,10 +5,10 @@ import ProjectCard from '../../components/ProjectCard.astro';
 import PageHero from '../../components/PageHero.astro';
 
 // Dynamically get all projects involving steel erection
-// For now, show agricultural and industrial projects (most involve steel)
+// Show agricultural and recladding projects (most involve steel)
 const allSteelProjects = await getCollection('projects', ({ data }) => {
   return data.category === 'agricultural' || 
-         data.category === 'industrial';
+         data.category === 'recladding';
 });
 
 // Sort by order
@@ -61,4 +61,15 @@ const sortedProjects = allSteelProjects.sort((a, b) => a.data.order - b.data.ord
       </div>
     </div>
   </section>
+
+  <script is:inline>
+    document.addEventListener('astro:page-load', () => {
+      const cards = document.querySelectorAll('.project-card');
+      cards.forEach((card, index) => {
+        setTimeout(() => {
+          card.classList.add('card-visible');
+        }, index * 60);
+      });
+    });
+  </script>
 </Layout>
