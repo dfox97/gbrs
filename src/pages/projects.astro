@@ -69,14 +69,16 @@ const sortedProjects = projectsRaw.sort((a, b) => a.data.order - b.data.order);
 
 
   <script is:inline>
-    // Pagination and Filtering Logic
-    let currentPage = 1;
-    const projectsPerPage = 12;
-    const projectCards = Array.from(document.querySelectorAll('.project-card:not(.placeholder-card)'));
-    const totalProjects = projectCards.length; 
-    
-    const totalVisibleProjects = projectCards.length;
-    const totalPages = Math.ceil(totalVisibleProjects / projectsPerPage);
+    // Wrap in astro:page-load listener for ClientRouter compatibility
+    document.addEventListener('astro:page-load', () => {
+      // Pagination and Filtering Logic
+      let currentPage = 1;
+      const projectsPerPage = 12;
+      const projectCards = Array.from(document.querySelectorAll('.project-card:not(.placeholder-card)'));
+      const totalProjects = projectCards.length; 
+      
+      const totalVisibleProjects = projectCards.length;
+      const totalPages = Math.ceil(totalVisibleProjects / projectsPerPage);
 
     const categoryFilter = document.getElementById('category-filter');
     const showingCount = document.getElementById('showing-count');
@@ -203,5 +205,6 @@ const sortedProjects = projectsRaw.sort((a, b) => a.data.order - b.data.order);
     // Initial load
     updatePagination();
     initImageAnimations();
+    }); // Close astro:page-load listener
   </script>
 </Layout>
