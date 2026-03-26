@@ -206,7 +206,7 @@
     box-shadow: none;
     margin: 0;
     padding: 0;
-    background: transparent;
+    background: var(--light-grey);
     border-radius: 0;
     opacity: 1;
     pointer-events: auto;
@@ -306,6 +306,7 @@
     left: 50%;
     transform: translateX(-50%);
     max-height: none;
+    background: white;
   }
 
   .nav-item:hover .nav-dropdown,
