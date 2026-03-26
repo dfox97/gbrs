@@ -1,17 +1,25 @@
 ---
-import ContactButton from './buttons/ContactButton.astro';
-import { getImage } from "astro:assets";
-import heroImage from "../assets/photos/liams-steel-up.avif";
-
-const optimizedBg = await getImage({src: heroImage, format: 'webp'});
-const bgStyle = `background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url(${optimizedBg.src}) center/cover no-repeat;`;
+import ContactButton from "./buttons/ContactButton.astro";
+import { Image } from "astro:assets";
+import heroImage from "../assets/photos/liams-steel-up-hero.avif";
 ---
-<section class="hero" id="main" style={bgStyle}>
+
+<section class="hero" id="main">
+  <Image
+    src={heroImage}
+    alt="GBRS Services Construction Site"
+    class="hero-bg-image"
+    loading="eager"
+    fetchpriority="high"
+  />
+  <div class="hero-overlay-bg"></div>
   <div class="hero-overlay">
     <div class="hero-badge">Est. 2022 • 40+ Years Combined Experience</div>
     <h1>Agricultural & Industrial Construction Specialists</h1>
-    <p class="hero-subtitle">From Foundations to Finish<br> Serving the North East</p>
-    
+    <p class="hero-subtitle">
+      From Foundations to Finish<br /> Serving the North East
+    </p>
+
     <!-- Prominent CTA buttons -->
     <div class="hero-cta-group">
       <ContactButton />
