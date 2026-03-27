@@ -1,7 +1,7 @@
 ---
 import ContactButton from "./buttons/ContactButton.astro";
 import { Image } from "astro:assets";
-import heroImage from "../assets/photos/liams-steel-up-hero.avif";
+import heroImage from "../assets/photos/liams-steel-up-hero.webp";
 ---
 
 <section class="hero" id="main">
@@ -11,7 +11,8 @@ import heroImage from "../assets/photos/liams-steel-up-hero.avif";
     class="hero-bg-image"
     loading="eager"
     fetchpriority="high"
-    decoding="sync"
+    decoding="async"
+    inferSize
   />
   <div class="hero-overlay-bg"></div>
   <div class="hero-overlay">
@@ -43,20 +44,7 @@ import heroImage from "../assets/photos/liams-steel-up-hero.avif";
   </div>
 </section>
 
-<script is:inline>
-  document.addEventListener('astro:page-load', () => {
-    const heroImg = document.querySelector('.hero-bg-image');
-    if (heroImg) {
-      if (heroImg.complete) {
-        heroImg.classList.add('loaded');
-      } else {
-        heroImg.addEventListener('load', () => {
-          heroImg.classList.add('loaded');
-        });
-      }
-    }
-  });
-</script>
+
 
 <style>
   .hero {

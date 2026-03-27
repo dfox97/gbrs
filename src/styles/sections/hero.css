@@ -8,14 +8,8 @@
   align-items: center;
 }
 
-/* Hero image fade-in animation */
+/* Hero image - visible immediately, no fade-in delay */
 .hero-bg-image {
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-}
-
-.hero-bg-image.loaded,
-.hero-bg-image[src] {
   opacity: 1;
 }
 
