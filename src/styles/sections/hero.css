@@ -1,5 +1,5 @@
 .hero {
-  background-color: var(--primary-dark, #d65a1a); /* Brand color fallback */
+  background-color: #333; /* Dark gray fallback for better visual transition */
   min-height: 75vh;
   position: relative;
   color: white;
@@ -112,7 +112,7 @@
 }
 
 .page-hero {
-  background-color: var(--primary-dark, #d65a1a); /* Brand color fallback */
+  background-color: #333; /* Dark gray fallback for better visual transition */
   min-height: 40vh;
   display: flex;
   justify-content: center;
