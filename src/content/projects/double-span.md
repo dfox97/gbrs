@@ -1,5 +1,5 @@
 ---
-title: Twin Span Agricultural Building
+title: "Twin Span Agricultural Building "
 category: agricultural
 services:
   - steel-erection
